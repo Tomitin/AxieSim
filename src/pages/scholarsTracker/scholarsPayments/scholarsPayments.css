@@ -1,0 +1,13 @@
+.scholars-payments .collapse-row-container {
+    display: flex;
+    margin: 16px 0;
+}
+
+.scholars-payments .collapse-data-container {
+    flex: 1;
+}
+
+.scholars-payments .percentage-bar-container {
+    height: 10px !important;
+    background-color: tomato !important;
+}

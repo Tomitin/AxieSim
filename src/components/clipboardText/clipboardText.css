@@ -1,0 +1,11 @@
+.clipboard-text.clipboard-text-container {
+    display: flex;
+    align-items: center;
+}
+
+.clipboard-text.clipboard-text-container .text-container {
+    overflow: hidden;
+    max-width: 110px;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}

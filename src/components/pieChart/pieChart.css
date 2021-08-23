@@ -1,0 +1,7 @@
+.pie-chart-component.pie-chart-container {
+    width: 100%;
+}
+
+.recharts-text.recharts-pie-label-text {
+    font-size: 14px;
+}

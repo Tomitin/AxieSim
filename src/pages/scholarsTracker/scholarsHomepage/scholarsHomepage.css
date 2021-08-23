@@ -1,0 +1,97 @@
+.row-container {
+    margin-bottom: 40px;
+}
+
+/* Coin box */
+.box-container {
+    padding: 16px;
+    margin-right: 24px;
+    border-radius: 8px;
+    box-sizing: border-box;
+    height: 100%;
+}
+
+.box-container .coin-container .coin-logo-container .coin-logo {
+    width: 50px;
+}
+
+.box-container .coin-list-box {
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+}
+
+.box-container .coin-container .coin-logo-container {
+    margin-right: 16px;
+}
+
+.box-container .coin-list-container {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+}
+
+.box-container .coin-list-container .coin-container {
+    flex: 1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 4px 0;
+}
+
+.box-container .coin-container:last-child {
+    padding: 0;
+    padding-top: 4px;
+}
+
+/* revenue box  */
+
+.revenue-box-container {
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+}
+
+.revenue-box-container .revenue-content-container {
+    display: flex;
+    flex: 1;
+}
+
+.revenue-box-container .revenue-content-container .total-revenue-container {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    padding-top: 8px;
+    padding-right: 16px;
+    flex: 1;
+}
+
+.revenue-box-container .revenue-content-container .total-revenue-container .total-revenue {
+    flex: 1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.scholars-box-container {
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+}
+
+.scholars-box-container .scholars-content-container {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+}
+
+.scholars-box-container .scholars-content-container .active-scholars-container {
+    flex: 1;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.scholars-activity-label {
+    color: #20a754;
+}

@@ -1,0 +1,10 @@
+.coin-amount {
+    display: flex;
+    align-items: center;
+}
+
+.coin-amount .coin-image {
+    margin-left: 4px;
+    width: 20px;
+    height: 20px;
+}

@@ -1,0 +1,219 @@
+.bredding-tree-app {
+    height: 100vh;
+    width: 100vh;
+    display: flex;
+    box-sizing: border-box;
+    padding-top: 48px;
+    background-color: #f7f7f7;
+}
+
+.bredding-tree-app .aside-menu {
+    width: 320px;
+    height: 100%;
+    background-color: white;
+    display: flex;
+    flex-direction: column;
+}
+
+.bredding-tree-app .aside-menu .title-container {
+    margin: 16px 0;
+}
+
+.bredding-tree-app .aside-menu .trees-form-container {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    overflow-y: auto;
+    padding-top: 16px;
+}
+
+.bredding-tree-app .aside-menu .trees-form-container .trees-list-container {
+    margin-top: 16px;
+}
+
+.bredding-tree-app .aside-menu .trees-form-container .trees-list-container .trees-list {
+    display: flex;
+    flex-wrap: wrap;
+    max-width: 224px;
+}
+
+.bredding-tree-app .aside-menu .trees-form-container .trees-list-container .trees-list .tree-container {
+    width: 100px;
+    height: 100px;
+    margin-bottom: 16px;
+    border-radius: 8px;
+    cursor: pointer;
+    position: relative;
+    overflow: hidden;
+}
+
+.bredding-tree-app .aside-menu .trees-form-container .trees-list-container .trees-list .add-tree-container {
+    background-image: url("data:image/svg+xml,%3csvg width='100%25' height='100%25' xmlns='http://www.w3.org/2000/svg'%3e%3crect width='100%25' height='100%25' fill='none' rx='8' ry='8' stroke='gray' stroke-width='4' stroke-dasharray='12' stroke-dashoffset='0' stroke-linecap='square'/%3e%3c/svg%3e");
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    box-sizing: border-box;
+    padding: 0 16px;
+}
+
+.bredding-tree-app .aside-menu .trees-form-container .trees-list-container .trees-list .add-tree-container:hover {
+    background-image: url("data:image/svg+xml,%3csvg width='100%25' height='100%25' xmlns='http://www.w3.org/2000/svg'%3e%3crect width='100%25' height='100%25' fill='none' rx='8' ry='8' stroke='%233f51b5' stroke-width='4' stroke-dasharray='12' stroke-dashoffset='0' stroke-linecap='square'/%3e%3c/svg%3e");
+}
+
+.bredding-tree-app
+    .aside-menu
+    .trees-form-container
+    .trees-list-container
+    .trees-list
+    .add-tree-container
+    .plus-icon-container {
+    position: absolute;
+    top: 0;
+    right: 0;
+    color: gray;
+}
+
+.bredding-tree-app
+    .aside-menu
+    .trees-form-container
+    .trees-list-container
+    .trees-list
+    .add-tree-container-selected
+    .plus-icon-container {
+    position: absolute;
+    top: 0;
+    right: 0;
+    color: #3f51b5;
+}
+
+.bredding-tree-app
+    .aside-menu
+    .trees-form-container
+    .trees-list-container
+    .trees-list
+    .add-tree-container:hover
+    .plus-icon-container {
+    color: #3f51b5;
+}
+
+.bredding-tree-app .aside-menu .trees-form-container .trees-list-container .trees-list .add-tree-container-selected {
+    background-image: url("data:image/svg+xml,%3csvg width='100%25' height='100%25' xmlns='http://www.w3.org/2000/svg'%3e%3crect width='100%25' height='100%25' fill='none' rx='8' ry='8' stroke='%233f51b5' stroke-width='4' stroke-dasharray='12' stroke-dashoffset='0' stroke-linecap='square'/%3e%3c/svg%3e") !important;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    box-sizing: border-box;
+    padding: 0 16px;
+}
+
+.bredding-tree-app .aside-menu .trees-form-container .trees-list-container .trees-list .add-tree-container-selected {
+    color: #3f51b5;
+}
+
+.spinner-backdrop {
+    z-index: 9999 !important;
+    color: white !important;
+}
+
+.bredding-tree-app
+    .aside-menu
+    .trees-form-container
+    .trees-list-container
+    .trees-list
+    .add-tree-container
+    .add-tree-text {
+    color: gray;
+}
+
+.bredding-tree-app
+    .aside-menu
+    .trees-form-container
+    .trees-list-container
+    .trees-list
+    .add-tree-container:hover
+    .add-tree-text {
+    color: #3f51b5;
+}
+
+.bredding-tree-app .aside-menu .trees-form-container .trees-list-container .trees-list .tree-container:nth-child(odd) {
+    margin-right: 24px;
+}
+
+.bredding-tree-app .aside-menu .trees-form-container .trees-list-container .trees-list .tree-container:only-child {
+    margin: 0;
+}
+
+.bredding-tree-app .breeding-tree-container {
+    flex: 1;
+    height: 100%;
+    overflow: auto;
+}
+
+.bredding-tree-app .breeding-tree-container .new-tree-container {
+    height: 100%;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.bredding-tree-app .breeding-tree-container .new-tree-container .new-tree-form {
+    width: 240px;
+}
+
+.bredding-tree-app .breeding-tree-container .empty-tree-container {
+    height: 100%;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.bredding-tree-app .breeding-tree-container .breeding-tree {
+    box-sizing: border-box;
+    padding: 24px;
+    height: 100%;
+    width: 100%;
+    position: relative;
+}
+
+.bredding-tree-app .breeding-tree-container .files-tools-container {
+    position: absolute;
+    top: 0;
+    right: 0;
+    margin-top: 16px;
+    margin-right: 16px;
+}
+
+.bredding-tree-app .breeding-tree-container .breeding-tree .files-tools-container .file-tool {
+    background-color: rgb(212, 212, 212);
+    margin-right: 8px;
+}
+
+.bredding-tree-app .breeding-tree-container .breeding-tree .axie-search {
+    position: absolute;
+    top: 0;
+    right: 50;
+}
+
+.bredding-tree-app .breeding-tree-container .breeding-tree .zoom-tools-container {
+    position: absolute;
+    left: 0;
+    bottom: 0;
+    margin-left: 16px;
+    margin-bottom: 16px;
+}
+
+.bredding-tree-app .breeding-tree-container .breeding-tree .zoom-tools-container .zoom-tool {
+    background-color: rgb(212, 212, 212);
+    margin-right: 8px;
+}
+
+.bredding-tree-app .breeding-tree-container .breeding-tree:active {
+    cursor: grabbing;
+}
+
+.bredding-tree-app .breeding-tree-container .breeding-tree .breeding-tree-svg {
+    height: 100%;
+    width: 100%;
+}

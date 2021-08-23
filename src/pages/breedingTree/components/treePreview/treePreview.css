@@ -1,0 +1,35 @@
+.tree-preview {
+    height: 100%;
+    width: 100%;
+}
+
+.tree-preview .delete-icon-container {
+    position: absolute;
+    top: 0;
+    right: 0;
+}
+
+.tree-preview:hover:not(.tree-preview-active) {
+    background-color: #d9d9d9;
+}
+
+.tree-preview:hover.tree-preview-active {
+    background-color: #c0c0c0;
+}
+
+.tree-preview:active {
+    background-color: #c4c4c4;
+}
+
+.tree-preview-active {
+    background-color: #c4c4c4;
+}
+
+.tree-preview .delete-icon-container .delete-icon-button:hover {
+    color: #f50057;
+}
+
+.tree-preview .tree-title-container {
+    padding: 16px;
+    padding-top: 24px;
+}

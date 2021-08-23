@@ -1,0 +1,28 @@
+.scholars-list .percentage-bar-container {
+    height: 10px !important;
+    background-color: tomato !important;
+}
+
+.scholars-list .coin-logo-container .coin-logo {
+    width: 20px;
+}
+
+.scholars-list .coin-logo-container {
+    margin-right: 4px;
+}
+
+.scholars-list .add-scholar-form-control {
+    margin-bottom: 16px !important;
+}
+
+.scholars-list .add-scholar-form-control:last-child {
+    margin-bottom: 0 !important;
+    margin-top: 16px !important;
+}
+
+.scholars-list .ronin-account-container {
+    overflow: hidden;
+    max-width: 110px;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}

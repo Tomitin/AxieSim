@@ -1,0 +1,61 @@
+.axie-profile-component .axie-profile-card {
+    width: 320px;
+    min-height: 300px;
+    display: flex;
+    user-select: none;
+    flex-direction: column;
+}
+
+.axie-profile-component .axie-profile-card .axie-profile-actions-container {
+    flex: 1;
+    align-items: flex-end !important;
+}
+
+.axie-profile-component .axie-profile-card .axie-profile-content-container .axie-profile-content {
+    padding-bottom: 0px !important;
+}
+
+.axie-profile-component .axie-profile-card .axie-profile-content-container .axie-profile-content .axie-info-container {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 4px;
+}
+
+.axie-profile-component .axie-profile-card .genes-row {
+    width: 100%;
+    margin: 2px 0;
+}
+
+.axie-profile-component .axie-profile-card .genes-row .genes-name-col {
+    width: 33%;
+    max-width: 33%;
+    display: inline-block;
+}
+
+.axie-profile-component .axie-profile-card .genes-row .genes-name-col .axie-class-text {
+    font-size: 14px;
+}
+
+.axie-profile-component .axie-profile-card .genes-row .genes-name-col .aquatic-text {
+    color: rgb(0, 184, 206);
+}
+
+.axie-profile-component .axie-profile-card .genes-row .genes-name-col .bug-text {
+    color: rgb(255, 83, 65);
+}
+
+.axie-profile-component .axie-profile-card .genes-row .genes-name-col .plant-text {
+    color: rgb(108, 192, 0);
+}
+
+.axie-profile-component .axie-profile-card .genes-row .genes-name-col .beast-text {
+    color: rgb(255, 184, 18);
+}
+
+.axie-profile-component .axie-profile-card .genes-row .genes-name-col .bird-text {
+    color: rgb(255, 139, 189);
+}
+
+.axie-profile-component .axie-profile-card .genes-row .genes-name-col .reptile-text {
+    color: rgb(200, 138, 224);
+}
