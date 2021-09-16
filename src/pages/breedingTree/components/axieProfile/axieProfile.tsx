@@ -1,5 +1,5 @@
 import React from 'react';
-import { Box, Button, Card, CardActions, CardContent, CardMedia, Divider, Typography } from '@material-ui/core';
+import { Button, Card, CardActions, CardContent, CardMedia, Typography } from '@material-ui/core';
 import './axieProfile.css';
 import { memo } from 'react';
 
@@ -51,24 +51,24 @@ interface AxieProfileComponentProps {
 
 const AxieProfileComponent: React.FunctionComponent<AxieProfileComponentProps> = (props: AxieProfileComponentProps) => {
     /** This function should not exist, good approach is to iterate over all axie parts and do a loop once */
-    const getClassTextByAxieClass = (axieClass: AxieType) => {
-        switch (axieClass) {
-            case 'aquatic':
-                return 'aquatic-text';
-            case 'beast':
-                return 'beast-text';
-            case 'plant':
-                return 'plant-text';
-            case 'reptile':
-                return 'reptile-text';
-            case 'bird':
-                return 'bird-text';
-            case 'bug':
-                return 'bug-text';
-            default:
-                return '';
-        }
-    };
+    // const getClassTextByAxieClass = (axieClass: AxieType) => {
+    //     switch (axieClass) {
+    //         case 'aquatic':
+    //             return 'aquatic-text';
+    //         case 'beast':
+    //             return 'beast-text';
+    //         case 'plant':
+    //             return 'plant-text';
+    //         case 'reptile':
+    //             return 'reptile-text';
+    //         case 'bird':
+    //             return 'bird-text';
+    //         case 'bug':
+    //             return 'bug-text';
+    //         default:
+    //             return '';
+    //     }
+    // };
 
     return (
         <div className="axie-profile-component">

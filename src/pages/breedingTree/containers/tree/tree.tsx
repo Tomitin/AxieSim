@@ -2,12 +2,7 @@ import { IconButton, Typography } from '@material-ui/core';
 import React, { useEffect, useRef } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { TREE_DEPTH } from '../../../../core/constants/constants';
-import {
-    addAxieToSelectedTree,
-    addNewState,
-    clearState,
-    updateAxieTree,
-} from '../../../../core/redux/breedingTree/actions';
+import { addAxieToSelectedTree, addNewState, updateAxieTree } from '../../../../core/redux/breedingTree/actions';
 import { getSelectedTree } from '../../../../core/redux/breedingTree/selectors';
 import { TreeStructure, TreeNode } from '../../../../models/breedingTree';
 import {
@@ -20,7 +15,6 @@ import TreeContentComponent from '../../components/treeContent/treeContent';
 import ZoomInIcon from '@material-ui/icons/ZoomIn';
 import ZoomOutIcon from '@material-ui/icons/ZoomOut';
 import ZoomOutMapIcon from '@material-ui/icons/ZoomOutMap';
-import PublishIcon from '@material-ui/icons/Publish';
 import CloudDownloadIcon from '@material-ui/icons/CloudDownload';
 
 import './tree.css';
