@@ -1,6 +1,6 @@
 import { Box } from '@material-ui/core';
 import React from 'react';
-import { COIN } from '../../constants/constants';
+import { COIN } from '../../core/constants/constants';
 import './coinAmount.css';
 
 type CoinType = 'AXS' | 'SLP';

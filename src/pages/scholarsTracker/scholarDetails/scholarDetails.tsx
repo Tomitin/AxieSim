@@ -2,7 +2,7 @@ import { Box, Button, Grid, Typography } from '@material-ui/core';
 import React from 'react';
 import { useTranslation } from 'react-i18next';
 import { Bar, BarChart, CartesianGrid, Legend, Tooltip, XAxis, YAxis } from 'recharts';
-import { COIN } from '../../../constants/constants';
+import { COIN } from '../../../core/constants/constants';
 import ClipboardTextComponent from '../../../components/clipboardText/clipboardText';
 import PieChartComponent from '../../../components/pieChart/pieChart';
 import ScholarsTrackerLayout from '../../../layouts/scholarsTrackerLayout/scholarsTrackerLayout';

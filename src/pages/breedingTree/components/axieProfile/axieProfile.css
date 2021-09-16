@@ -11,14 +11,26 @@
     align-items: flex-end !important;
 }
 
+.axie-profile-component .axie-profile-card .axie-profile-actions-container .axie-profile-action-button {
+    /* pointer-events: initial; */
+}
+
 .axie-profile-component .axie-profile-card .axie-profile-content-container .axie-profile-content {
     padding-bottom: 0px !important;
 }
 
 .axie-profile-component .axie-profile-card .axie-profile-content-container .axie-profile-content .axie-info-container {
-    display: flex;
-    justify-content: space-between;
     margin-bottom: 4px;
+    text-align: center;
+}
+
+.axie-profile-component
+    .axie-profile-card
+    .axie-profile-content-container
+    .axie-profile-content
+    .axie-info-container
+    .axie-id-link {
+    pointer-events: initial;
 }
 
 .axie-profile-component .axie-profile-card .genes-row {
