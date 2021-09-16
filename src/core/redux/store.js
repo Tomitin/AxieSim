@@ -3,7 +3,7 @@ import createSagaMiddleware from 'redux-saga';
 import rootReducer from './reducers';
 import rootSaga from './sagas';
 import { applyMiddleware, createStore } from 'redux';
-import { loadState, saveState } from '../core/localstorage';
+import { loadState, saveState } from '../localstorage';
 import throttle from 'lodash/throttle';
 
 export const history = createBrowserHistory();

@@ -8,6 +8,11 @@ export const GET_AXIE_DETAILS_ERROR = 'GET_AXIE_DETAILS_ERROR';
 export const ADD_AXIE_TO_SELECTED_TREE = 'ADD_AXIE_TO_SELECTED_TREE';
 export const ADD_AXIE = 'ADD_AXIE';
 export const SUBMIT_NEW_TREE_FORM = 'SUBMIT_NEW_TREE_FORM';
+export const UPDATE_AXIE_TREE = 'UPDATE_AXIE_TREE';
+export const GET_NON_CACHED_AXIE_DETAILS_SUCCESS = 'GET_NON_CACHED_AXIE_DETAILS_SUCCESS';
+export const GET_NON_CACHED_AXIE_DETAILS_ERROR = 'GET_NON_CACHED_AXIE_DETAILS_ERROR';
+export const UPDATE_AXIE_TO_SELECTED_TREE = 'UPDATE_AXIE_TO_SELECTED_TREE';
+export const SET_LOADING = 'SET_LOADING';
 
 export const addNewTreeForm = () => ({
     type: ADD_NEW_TREE_FORM,
@@ -20,6 +25,11 @@ export const submitNewTreeForm = (payload) => ({
 
 export const addTree = (payload) => ({
     type: ADD_TREE,
+    payload,
+});
+
+export const setLoading = (payload) => ({
+    type: SET_LOADING,
     payload,
 });
 
@@ -55,5 +65,25 @@ export const getAxieDetailsSuccess = (payload) => ({
 
 export const getAxieDetailsError = (payload) => ({
     type: GET_AXIE_DETAILS_ERROR,
+    payload,
+});
+
+export const updateAxieTree = (payload) => ({
+    type: UPDATE_AXIE_TREE,
+    payload,
+});
+
+export const getNonCachedAxieDetailsSuccess = (payload) => ({
+    type: GET_NON_CACHED_AXIE_DETAILS_SUCCESS,
+    payload,
+});
+
+export const getNonCachedAxieDetailsError = (payload) => ({
+    type: GET_NON_CACHED_AXIE_DETAILS_ERROR,
+    payload,
+});
+
+export const updateAxieToSelectedTree = (payload) => ({
+    type: UPDATE_AXIE_TO_SELECTED_TREE,
     payload,
 });

@@ -1,0 +1,94 @@
+.tree-component {
+    width: 100%;
+    height: 100%;
+}
+
+.tree-component .empty-tree-container {
+    height: 100%;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.tree-component .breeding-tree-container {
+    height: 100%;
+    width: 100%;
+    position: relative;
+}
+
+.tree-component .files-tools-container {
+    position: absolute;
+    top: 0;
+    right: 0;
+    margin-top: 16px;
+    margin-right: 16px;
+}
+
+.tree-component .breeding-tree-container .files-tools-container .file-tool {
+    background-color: rgb(212, 212, 212);
+    margin-right: 8px;
+}
+
+.tree-component .breeding-tree-container .axie-search {
+    position: absolute;
+    top: 0;
+    right: 50;
+}
+
+.tree-component .breeding-tree-container .zoom-tools-container {
+    position: absolute;
+    left: 0;
+    bottom: 0;
+    margin-left: 16px;
+    margin-bottom: 16px;
+}
+
+.tree-component .breeding-tree-container .zoom-tools-container .zoom-tool {
+    background-color: rgb(212, 212, 212);
+    margin-right: 8px;
+}
+
+.tree-component .breeding-tree-container:active {
+    cursor: grabbing;
+}
+
+.tree-component .breeding-tree-container .breeding-tree {
+    position: absolute;
+    min-width: 100%;
+    /* Take this with care since it may generate performance issues */
+    display: flex;
+    justify-content: center;
+}
+
+.tree-component .breeding-tree-container .zoom-container {
+    position: relative;
+    width: 100%;
+    height: 100%;
+}
+/* 
+.middle-point-test {
+    width: 80px;
+    height: 80px;
+    border-radius: 50%;
+    background-color: red;
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+} */
+
+.breeding-tree > .axie-family-spacer {
+    margin: 0px;
+}
+/* 
+.middle-point-container {
+    width: 25px;
+    height: 25px;
+    border-radius: 50%;
+    background-color: blue;
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+} */

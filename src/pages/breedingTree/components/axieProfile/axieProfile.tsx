@@ -1,16 +1,5 @@
 import React from 'react';
-import {
-    Box,
-    Button,
-    Card,
-    CardActionArea,
-    CardActions,
-    CardContent,
-    CardMedia,
-    Divider,
-    Grid,
-    Typography,
-} from '@material-ui/core';
+import { Box, Button, Card, CardActions, CardContent, CardMedia, Divider, Typography } from '@material-ui/core';
 import './axieProfile.css';
 import { memo } from 'react';
 
@@ -20,7 +9,7 @@ type GeneType = 'ears' | 'eyes' | 'back' | 'mouth' | 'horn' | 'tail';
 interface GenesInformation {
     partId: string;
     class: AxieType;
-    specialGenes?: boolean;
+    specialGenes?: boolean | null;
     type: GeneType;
     name: string;
 }
@@ -32,11 +21,17 @@ interface Genes {
     mystic?: boolean;
 }
 
+interface BinaryGenes {
+    d: string;
+    r1: string;
+    r2: string;
+}
+
 interface AxieGenes {
     cls: AxieType;
     region: string;
-    color: Genes;
-    pattern: Genes;
+    color: BinaryGenes;
+    pattern: BinaryGenes;
     eyes: Genes;
     ears: Genes;
     back: Genes;
@@ -51,6 +46,7 @@ interface AxieProfileComponentProps {
     breedCount: number;
     axieClass?: AxieType;
     size: 'small' | 'medium' | 'large';
+    onUpdateAxieClick: () => void;
 }
 
 const AxieProfileComponent: React.FunctionComponent<AxieProfileComponentProps> = (props: AxieProfileComponentProps) => {
@@ -75,10 +71,9 @@ const AxieProfileComponent: React.FunctionComponent<AxieProfileComponentProps> =
     };
 
     return (
-        <Box className="axie-profile-component">
-            {console.count()}
+        <div className="axie-profile-component">
             <Card className="axie-profile-card size-medium">
-                <Box className="axie-profile-content-container">
+                <div className="axie-profile-content-container">
                     <CardMedia
                         component="img"
                         draggable={false}
@@ -88,18 +83,19 @@ const AxieProfileComponent: React.FunctionComponent<AxieProfileComponentProps> =
                         title={props.axieClass ? props.axieClass : 'axie image'}
                     />
                     <CardContent className="axie-profile-content">
-                        <Box className="axie-info-container">
+                        <div className="axie-info-container">
                             <Typography
-                                variant="h6"
+                                className="axie-id-link"
+                                variant="h4"
+                                align="center"
                                 component="a"
                                 href={`https://marketplace.axieinfinity.com/axie/${props.axieId}`}
                                 target="_blank"
                             >
                                 #{props.axieId}
                             </Typography>
-                            <Typography variant="h6">Breeds: {props.breedCount}/7</Typography>
-                        </Box>
-                        <Box className="genes-row">
+                        </div>
+                        {/*<Box className="genes-row">
                             <Box className="genes-name-col">
                                 <Typography
                                     className={
@@ -277,19 +273,34 @@ const AxieProfileComponent: React.FunctionComponent<AxieProfileComponentProps> =
                                     {props.axieGenes.tail.r2.name}
                                 </Typography>
                             </Box>
-                        </Box>
+                        </Box>*/}
                     </CardContent>
-                </Box>
+                </div>
                 <CardActions className="axie-profile-actions-container">
-                    <Button size="small" color="primary">
-                        Check breedability
-                    </Button>
-                    <Button size="small" color="primary">
-                        Update axie
-                    </Button>
+                    <div>
+                        <Button
+                            className="axie-profile-action-button"
+                            disableRipple={true}
+                            size="small"
+                            color="primary"
+                            fullWidth={true}
+                        >
+                            <Typography variant="h5">Check breedability</Typography>
+                        </Button>
+                        <Button
+                            className="axie-profile-action-button"
+                            disableRipple={true}
+                            onClick={props.onUpdateAxieClick}
+                            size="large"
+                            fullWidth={true}
+                            color="primary"
+                        >
+                            <Typography variant="h5">Search children</Typography>
+                        </Button>
+                    </div>
                 </CardActions>
             </Card>
-        </Box>
+        </div>
     );
 };
 
