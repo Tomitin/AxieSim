@@ -13,6 +13,8 @@ export const GET_NON_CACHED_AXIE_DETAILS_SUCCESS = 'GET_NON_CACHED_AXIE_DETAILS_
 export const GET_NON_CACHED_AXIE_DETAILS_ERROR = 'GET_NON_CACHED_AXIE_DETAILS_ERROR';
 export const UPDATE_AXIE_TO_SELECTED_TREE = 'UPDATE_AXIE_TO_SELECTED_TREE';
 export const SET_LOADING = 'SET_LOADING';
+export const ADD_NEW_STATE = 'ADD_NEW_STATE';
+export const CLEAR_STATE = 'CLEAR_STATE';
 
 export const addNewTreeForm = () => ({
     type: ADD_NEW_TREE_FORM,
@@ -35,6 +37,16 @@ export const setLoading = (payload) => ({
 
 export const addAxie = (payload) => ({
     type: ADD_AXIE,
+    payload,
+});
+
+export const addNewState = (payload) => ({
+    type: ADD_NEW_STATE,
+    payload,
+});
+
+export const clearState = (payload) => ({
+    type: CLEAR_STATE,
     payload,
 });
 

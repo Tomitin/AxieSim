@@ -2,7 +2,12 @@ import { IconButton, Typography } from '@material-ui/core';
 import React, { useEffect, useRef } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { TREE_DEPTH } from '../../../../core/constants/constants';
-import { addAxieToSelectedTree, updateAxieTree } from '../../../../core/redux/breedingTree/actions';
+import {
+    addAxieToSelectedTree,
+    addNewState,
+    clearState,
+    updateAxieTree,
+} from '../../../../core/redux/breedingTree/actions';
 import { getSelectedTree } from '../../../../core/redux/breedingTree/selectors';
 import { TreeStructure, TreeNode } from '../../../../models/breedingTree';
 import {
@@ -19,6 +24,7 @@ import PublishIcon from '@material-ui/icons/Publish';
 import CloudDownloadIcon from '@material-ui/icons/CloudDownload';
 
 import './tree.css';
+import UploadFileComponent from '../../../../components/uploadFile/uploadFile';
 
 interface TreeComponentProps {
     selectedTreeId: string;
@@ -250,8 +256,27 @@ const TreeComponent: React.FunctionComponent<TreeComponentProps> = (props: TreeC
         }
     };
 
-    const handleUploadTreeClick = (event: React.MouseEvent) => {
-        console.log('');
+    const handleUploadTreeClick = (event: React.ChangeEvent<HTMLInputElement>) => {
+        if (event != null && event.target != null && !event.target.files) return;
+
+        const files = event.target.files;
+        if (files !== null) {
+            //from all the files the user selected, pick the first one
+            const file = files[0];
+            const fileReader = new FileReader();
+            // 2.When it finishes to read the file, execute the function to get the data
+            fileReader.onload = (() => (event: ProgressEvent<FileReader>) => {
+                if (!!event.target) {
+                    const json = event.target.result;
+                    if (!!json) {
+                        const parsedState = JSON.parse(json.toString());
+                        dispatch(addNewState({ state: parsedState.breedingTreeApp }));
+                    }
+                }
+            })();
+            // 1.Read the file
+            fileReader.readAsText(file);
+        }
     };
 
     return (
@@ -290,9 +315,7 @@ const TreeComponent: React.FunctionComponent<TreeComponentProps> = (props: TreeC
                                 <CloudDownloadIcon titleAccess="Download data" />
                             </IconButton>
                         </a>
-                        <IconButton className="file-tool" color="primary" onClick={handleUploadTreeClick}>
-                            <PublishIcon titleAccess="Import data" />
-                        </IconButton>
+                        <UploadFileComponent onChange={handleUploadTreeClick} />
                     </div>
                     <div className="zoom-tools-container">
                         <IconButton className="zoom-tool" color="primary" onClick={() => handleZoomClick('in')}>

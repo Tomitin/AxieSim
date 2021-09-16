@@ -160,3 +160,30 @@
 .bredding-tree-app .main-content .new-tree-container .new-tree-form {
     width: 240px;
 }
+
+.support-container {
+    display: flex;
+    justify-content: center;
+}
+
+.support-button-container {
+    display: flex;
+    justify-content: center;
+    padding: 16px;
+    text-transform: none;
+}
+
+.donation-button {
+    text-transform: none !important;
+}
+
+.support-button {
+    text-transform: none !important;
+}
+
+.donation-box-container {
+    padding: 8px;
+    margin: 4px 0;
+    border: 1px solid gray;
+    border-radius: 4px;
+}

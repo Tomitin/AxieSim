@@ -21,6 +21,10 @@ const initialState = {
 
 export const breedingTreeReducer = (state = initialState, { type, payload }) => {
     switch (type) {
+        case actions.ADD_NEW_STATE:
+            return payload.state;
+        case actions.CLEAR_STATE:
+            return initialState;
         case actions.ADD_NEW_TREE_FORM:
             return {
                 ...state,

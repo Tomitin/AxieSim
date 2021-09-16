@@ -4,11 +4,11 @@ import './App.css';
 import Footer from './components/footer/footer';
 import Navbar from './components/navbar/navbar';
 import BreedingTree from './pages/breedingTree/breedingTree';
-import ForgotPassword from './pages/forgotPassword/forgotPassword';
-import Home from './pages/home/home';
-import Login from './pages/login/login';
-import Register from './pages/register/register';
-import ScholarsTracker from './pages/scholarsTracker/scholarsTracker';
+// import ForgotPassword from './pages/forgotPassword/forgotPassword';
+// import Home from './pages/home/home';
+// import Login from './pages/login/login';
+// import Register from './pages/register/register';
+// import ScholarsTracker from './pages/scholarsTracker/scholarsTracker';
 
 const App: React.FunctionComponent = ({ location }: any) => {
     return (
@@ -16,10 +16,10 @@ const App: React.FunctionComponent = ({ location }: any) => {
             <Navbar></Navbar>
             <main className="content">
                 <Switch>
-                    <Route path="/breeding-tree">
+                    <Route path="/">
                         <BreedingTree />
                     </Route>
-                    <Route path="/scholars-tracker">
+                    {/* <Route path="/scholars-tracker">
                         <ScholarsTracker />
                     </Route>
                     <Route path="/login">
@@ -30,16 +30,16 @@ const App: React.FunctionComponent = ({ location }: any) => {
                     </Route>
                     <Route path="/forgot-password">
                         <ForgotPassword />
-                    </Route>
+                    </Route> */}
                     {/*Important: A route with path="/" will *always* match
                     the URL because all URLs begin with a /. So that's
                     why we put this one last of all */}
-                    <Route path="/">
+                    {/* <Route path="/">
                         <Home />
-                    </Route>
+                    </Route> */}
                 </Switch>
             </main>
-            {location.pathname !== '/breeding-tree' && <Footer />}
+            {location.pathname !== '/' && <Footer />}
         </div>
     );
 };

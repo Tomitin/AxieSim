@@ -3,6 +3,14 @@
     align-items: center;
 }
 
+.clipboard-text.clipboard-text-container.full-width {
+    max-width: 95%;
+}
+
+.clipboard-text.clipboard-text-container.full-width .text-container {
+    max-width: none;
+}
+
 .clipboard-text.clipboard-text-container .text-container {
     overflow: hidden;
     max-width: 110px;

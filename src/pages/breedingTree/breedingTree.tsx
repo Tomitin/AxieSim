@@ -22,6 +22,7 @@ import CircularProgress from '@material-ui/core/CircularProgress';
 import Backdrop from '@material-ui/core/Backdrop';
 import TreePreviewComponent from './components/treePreview/treePreview';
 import TreeComponent from './containers/tree/tree';
+import ClipboardTextComponent from '../../components/clipboardText/clipboardText';
 
 const BreedingTree: React.FunctionComponent = () => {
     const dispatch = useDispatch();
@@ -34,6 +35,8 @@ const BreedingTree: React.FunctionComponent = () => {
     const [searchTreesForm, setSearchTreesForm] = React.useState('');
     const [filteredTreeList, setFilteredTreeList] = React.useState([]);
     const [isDeleteModalOpen, setDeleteModalOpen] = React.useState(false);
+    const [isDonationsModalOpen, setIsDonationsModalOpen] = React.useState(false);
+    const [isSupportModalOpen, setIsSupportModalOpen] = React.useState(false);
     const [treeIdToDelete, setTreeIdToDelete] = React.useState('');
     const [snackBarMessage, setSnackbarMessage] = React.useState('');
     const [newTreeForm, setNewTreeForm] = React.useState({
@@ -107,6 +110,26 @@ const BreedingTree: React.FunctionComponent = () => {
         dispatch(submitNewTreeForm({ axieId: newTreeForm.axieOne, newTreeForm }));
     };
 
+    /* Donations modal */
+
+    const handleDonationsClick = () => {
+        setIsDonationsModalOpen(true);
+    };
+
+    const handleDonationsClose = () => {
+        setIsDonationsModalOpen(false);
+    };
+
+    /* Support modal */
+
+    const handleSupportClick = () => {
+        setIsSupportModalOpen(true);
+    };
+
+    const handleSupportClose = () => {
+        setIsSupportModalOpen(false);
+    };
+
     return (
         <div className="bredding-tree-app">
             <Box className="aside-menu" boxShadow={5}>
@@ -155,6 +178,23 @@ const BreedingTree: React.FunctionComponent = () => {
                         </Box>
                     </Box>
                 </Box>
+                <div className="support-container">
+                    <Box className="support-button-container">
+                        <Button
+                            onClick={handleDonationsClick}
+                            className="donation-button"
+                            variant="text"
+                            color="primary"
+                        >
+                            Donations
+                        </Button>
+                    </Box>
+                    <Box className="support-button-container">
+                        <Button onClick={handleSupportClick} className="support-button" variant="text" color="primary">
+                            Support
+                        </Button>
+                    </Box>
+                </div>
             </Box>
             <Box className="main-content">
                 {isNewTreeSelected && (
@@ -214,6 +254,55 @@ const BreedingTree: React.FunctionComponent = () => {
                 handleAccept={handleAcceptDeleteModal}
                 handleClose={handleDeleteModalClose}
             />
+            <DialogComponent
+                title="Contact me"
+                description="Hey, if you have feature requests, bugs that happened or anything related to this page, feel free to contact me via:"
+                isOpen={isSupportModalOpen}
+                closeButtontitle="Close"
+                handleClose={handleSupportClose}
+            >
+                <Box marginTop="8px">
+                    <strong>Discord:</strong> Tomitin#7106
+                </Box>
+                <div>
+                    <strong>Email:</strong> tomssaezm@gmail.com
+                </div>
+            </DialogComponent>
+            <DialogComponent
+                title="Thank you for your support!"
+                isOpen={isDonationsModalOpen}
+                closeButtontitle="Close"
+                handleClose={handleDonationsClose}
+            >
+                <div style={{ marginBottom: '16px' }}>
+                    <Typography variant="subtitle2">
+                        This idea happened thanks to the community and will be free thanks to the donations given here.
+                        Improvements to this system will happen regularly. Hope you enjoy it :)
+                    </Typography>
+                </div>
+                <div>
+                    Ethereum:
+                    <div className="donation-box-container">
+                        <ClipboardTextComponent
+                            fullWidth={true}
+                            textToCopy="0x1491e7f79ee584D4a668E13697b6525C2F60DaE8"
+                        >
+                            0x1491e7f79ee584D4a668E13697b6525C2F60DaE8
+                        </ClipboardTextComponent>
+                    </div>
+                </div>
+                <div>
+                    Axs/slp/axies:
+                    <div className="donation-box-container">
+                        <ClipboardTextComponent
+                            fullWidth={true}
+                            textToCopy="ronin:6a0c1869aa161bc0022baac7dc2335019b7805a7"
+                        >
+                            ronin:6a0c1869aa161bc0022baac7dc2335019b7805a7
+                        </ClipboardTextComponent>
+                    </div>
+                </div>
+            </DialogComponent>
             <SnackbarComponent
                 message={snackBarMessage}
                 isTriggered={isSnackbarOpen}

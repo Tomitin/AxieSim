@@ -1,38 +1,36 @@
-import { AppBar, Box, Button, Toolbar, Typography } from "@material-ui/core";
-import React from "react";
+import { AppBar, Button, Toolbar, Typography } from '@material-ui/core';
+import React from 'react';
 import { useTranslation } from 'react-i18next';
-import { useHistory } from "react-router-dom";
+import { useHistory } from 'react-router-dom';
 
 const Navbar: React.FunctionComponent = () => {
     const { t } = useTranslation();
     const history = useHistory();
 
     const handleHomeClick = () => {
-        history.push('/')
-    }
+        history.push('/');
+    };
 
-    const handleToolsClick = () => {
-        history.push('/earnings-simulator')
-    }
+    // const handleToolsClick = () => {
+    //     history.push('/earnings-simulator');
+    // };
 
-    const handleTrackersClick = () => {
-        history.push('/scholars-tracker')
-    }
+    // const handleTrackersClick = () => {
+    //     history.push('/scholars-tracker');
+    // };
 
-    const handleLoginClick = () => {
-        history.push('/login')
-    }
+    // const handleLoginClick = () => {
+    //     history.push('/login');
+    // };
 
     return (
         <div>
             <AppBar position="fixed">
                 <Toolbar variant="dense">
                     <Button color="inherit" onClick={handleHomeClick}>
-                        <Typography variant="h5">
-                            {t('components.navbar.companyName')}
-                        </Typography>
+                        <Typography variant="h5">{t('components.navbar.companyName')}</Typography>
                     </Button>
-                    <Box ml='auto'>
+                    {/* <Box ml='auto'>
                         <Button color="inherit" onClick={handleToolsClick}>
                                 {t('components.navbar.tools')}
                         </Button>
@@ -42,11 +40,11 @@ const Navbar: React.FunctionComponent = () => {
                         <Button color="inherit" onClick={handleLoginClick}>
                                 {t('components.navbar.login')}
                         </Button>
-                    </Box>
+                    </Box> */}
                 </Toolbar>
             </AppBar>
         </div>
     );
-}
+};
 
-export default Navbar
+export default Navbar;
