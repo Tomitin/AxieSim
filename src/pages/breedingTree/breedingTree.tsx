@@ -256,7 +256,7 @@ const BreedingTree: React.FunctionComponent = () => {
             />
             <DialogComponent
                 title="Contact me"
-                description="Hey, if you have feature requests, bugs that happened or anything related to this page, feel free to contact me via:"
+                description="Hey, if you have feature requests, if you find bugs or anything related to this page, feel free to contact me via:"
                 isOpen={isSupportModalOpen}
                 closeButtontitle="Close"
                 handleClose={handleSupportClose}
@@ -276,8 +276,9 @@ const BreedingTree: React.FunctionComponent = () => {
             >
                 <div style={{ marginBottom: '16px' }}>
                     <Typography variant="subtitle2">
-                        This idea happened thanks to the community and will be free thanks to the donations given here.
-                        Improvements to this system will happen regularly. Hope you enjoy it :)
+                        This idea happened thanks to the community and I surely hope this tool is useful for you :).
+                        Improvements to this system will happen regularly so if you want to suggest something feel free
+                        to dm me by discord: Tomitin#7106.
                     </Typography>
                 </div>
                 <div>
