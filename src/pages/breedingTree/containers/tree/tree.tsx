@@ -4,7 +4,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { TREE_DEPTH } from '../../../../core/constants/constants';
 import { addAxieToSelectedTree, addNewState, updateAxieTree } from '../../../../core/redux/breedingTree/actions';
 import { getSelectedTree } from '../../../../core/redux/breedingTree/selectors';
-import { TreeStructure, TreeNode } from '../../../../models/breedingTree';
+import { TreeStructure } from '../../../../models/breedingTree';
 import {
     calculateVisibleTreeScale,
     calculateXCenteredPos,
@@ -19,6 +19,7 @@ import CloudDownloadIcon from '@material-ui/icons/CloudDownload';
 
 import './tree.css';
 import UploadFileComponent from '../../../../components/uploadFile/uploadFile';
+import { TreeNode } from '../../../../models/state';
 
 interface TreeComponentProps {
     selectedTreeId: string;
@@ -28,7 +29,7 @@ interface TreeComponentProps {
 const TreeComponent: React.FunctionComponent<TreeComponentProps> = (props: TreeComponentProps) => {
     const dispatch = useDispatch();
     const selectedTree = useSelector((state) => getSelectedTree(state));
-    const [isPanning, setIsPanning] = React.useState(false);
+    const [isPanning, setIsPanning] = React.useState<boolean>(false);
     const [startPoint, setStartPoint] = React.useState({ x: 0, y: 0, viewBoxX: 0, viewBoxY: 0 });
     const breedingTreeElement = useRef<HTMLDivElement>(null);
     const [viewBox, setViewBox] = React.useState({
@@ -39,7 +40,7 @@ const TreeComponent: React.FunctionComponent<TreeComponentProps> = (props: TreeC
         containerWidth: 0,
         containerHeight: 0,
     });
-    const [scale, setScale] = React.useState(1);
+    const [scale, setScale] = React.useState<number>(1);
     const [treeOffset, setTreeOffset] = React.useState({
         horizontal: { byZoom: 0, byPanning: 0, lastHorizontalOffset: 0 },
         vertical: { byZoom: 0, byPanning: 0 },
@@ -93,23 +94,23 @@ const TreeComponent: React.FunctionComponent<TreeComponentProps> = (props: TreeC
     };
 
     const getCenterMousePos = (wheelEvent: React.WheelEvent, horizontalDirection: boolean): number => {
-        const mousePos: number = horizontalDirection ? wheelEvent.nativeEvent.x : wheelEvent.nativeEvent.y;
+        const mousePos = horizontalDirection ? wheelEvent.nativeEvent.x : wheelEvent.nativeEvent.y;
 
         /* Offset calculated by content being in right bottom corner */
-        const horizontalOffset: number = document.body.clientWidth - viewBox.containerWidth;
-        const verticalOffset: number = document.body.clientHeight - viewBox.containerHeight;
+        const horizontalOffset = document.body.clientWidth - viewBox.containerWidth;
+        const verticalOffset = document.body.clientHeight - viewBox.containerHeight;
 
-        const containerOffset: number = horizontalDirection ? horizontalOffset : verticalOffset;
+        const containerOffset = horizontalDirection ? horizontalOffset : verticalOffset;
 
         /* Top left of container means 0x0 - widthxheight */
-        const mouseRelativePos: number = mousePos - containerOffset;
+        const mouseRelativePos = mousePos - containerOffset;
 
-        const horizontalCenter: number = viewBox.containerWidth / 2;
-        const verticalCenter: number = viewBox.containerHeight / 2;
-        const containerCenter: number = horizontalDirection ? horizontalCenter : verticalCenter;
+        const horizontalCenter = viewBox.containerWidth / 2;
+        const verticalCenter = viewBox.containerHeight / 2;
+        const containerCenter = horizontalDirection ? horizontalCenter : verticalCenter;
 
         /* Top left is -(width|height)/2 and center is 0  */
-        const mouseRelativeCenteredPos: number = mouseRelativePos - containerCenter;
+        const mouseRelativeCenteredPos = mouseRelativePos - containerCenter;
 
         return mouseRelativeCenteredPos;
     };

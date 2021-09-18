@@ -62,19 +62,20 @@ function* updateTree(action) {
 
 function* updateAxieChildren(axieId, directChildrenIds, searchDepth) {
     if (searchDepth === TREE_DEPTH.AXIE_WITH_CHILDREN) {
-        const responseList = yield all(directChildrenIds.map((childId) => call(Api.getAxieDetails, childId)));
+        try {
+            const responseList = yield all(directChildrenIds.map((childId) => call(Api.getAxieDetails, childId)));
+            const actionsList = responseList.reduce((accumulator, response) => {
+                const formattedChildrenList = mapAxieChildrenList(response.data.children);
+                return accumulator.concat([
+                    put(getAxieDetailsSuccess({ axie: { ...response.data, children: formattedChildrenList } })),
+                    put(addAxieToSelectedTree({ axieId: response.data.id, childrenList: [] })),
+                ]);
+            }, []);
 
-        const actionsList = responseList.reduce((accumulator, response) => {
-            const formattedChildrenList = mapAxieChildrenList(response.data.children);
-            return accumulator.concat([
-                put(getAxieDetailsSuccess({ axie: { ...response.data, children: formattedChildrenList } })),
-                put(addAxieToSelectedTree({ axieId: response.data.id, childrenList: [] })),
-            ]);
-        }, []);
-
-        console.log(actionsList);
-
-        yield all(actionsList);
+            yield all(actionsList);
+        } catch (error) {
+            yield put(getNonCachedAxieDetailsError(error.message));
+        }
     }
 }
 

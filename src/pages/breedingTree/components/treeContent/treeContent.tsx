@@ -12,9 +12,8 @@ interface TreeContentComponentProps {
 let shouldMemoize = false;
 
 const TreeContentComponent: React.FunctionComponent<TreeContentComponentProps> = (props: TreeContentComponentProps) => {
-    const { id, parents, breedCount, axieClass, axieGenes, children } = props.treeStructure;
+    const { id, parents, breedCount, axieClass, children } = props.treeStructure;
 
-    // console.log('axie id ' + id + 'with children', children);
     const hasChildren = children && children.length;
     return (
         <>
@@ -23,7 +22,6 @@ const TreeContentComponent: React.FunctionComponent<TreeContentComponentProps> =
                     <div className="axie-parent-container">
                         <div className="axie-parent">
                             <AxieProfileComponent
-                                axieGenes={axieGenes}
                                 axieId={id}
                                 size="medium"
                                 breedCount={breedCount}
@@ -46,7 +44,6 @@ const TreeContentComponent: React.FunctionComponent<TreeContentComponentProps> =
             ) : (
                 <div className="axie-child">
                     <AxieProfileComponent
-                        axieGenes={axieGenes}
                         axieId={id}
                         size="medium"
                         breedCount={breedCount}

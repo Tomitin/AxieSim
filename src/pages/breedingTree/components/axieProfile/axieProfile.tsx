@@ -2,46 +2,9 @@ import React from 'react';
 import { Button, Card, CardActions, CardContent, CardMedia, Typography } from '@material-ui/core';
 import './axieProfile.css';
 import { memo } from 'react';
-
-type AxieType = 'beast' | 'plant' | 'bird' | 'aquatic' | 'reptile' | 'bug' | 'mech' | 'dawn' | 'dusk';
-type GeneType = 'ears' | 'eyes' | 'back' | 'mouth' | 'horn' | 'tail';
-
-interface GenesInformation {
-    partId: string;
-    class: AxieType;
-    specialGenes?: boolean | null;
-    type: GeneType;
-    name: string;
-}
-
-interface Genes {
-    d: GenesInformation;
-    r1: GenesInformation;
-    r2: GenesInformation;
-    mystic?: boolean;
-}
-
-interface BinaryGenes {
-    d: string;
-    r1: string;
-    r2: string;
-}
-
-interface AxieGenes {
-    cls: AxieType;
-    region: string;
-    color: BinaryGenes;
-    pattern: BinaryGenes;
-    eyes: Genes;
-    ears: Genes;
-    back: Genes;
-    mouth: Genes;
-    horn: Genes;
-    tail: Genes;
-}
-
+import { AxieType } from '../../../../models/axie';
 interface AxieProfileComponentProps {
-    axieGenes: AxieGenes;
+    // axieGenes: AxieGenes;
     axieId: string;
     breedCount: number;
     axieClass?: AxieType;

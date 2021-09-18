@@ -1,5 +1,4 @@
-export type AxieType = 'beast' | 'plant' | 'bird' | 'aquatic' | 'reptile' | 'bug' | 'mech' | 'dawn' | 'dusk';
-export type GeneType = 'ears' | 'eyes' | 'back' | 'mouth' | 'horn' | 'tail';
+import { AxieType, GeneType } from './axie';
 
 export interface GenesInformation {
     partId: string;
@@ -41,13 +40,8 @@ export interface TreeStructure {
     partners: string[];
     breedCount: number;
     axieClass?: AxieType;
-    axieGenes: AxieGenes;
+    // axieGenes: AxieGenes;
     children: TreeStructure[];
-}
-
-export interface TreeNode {
-    source: string;
-    targets: string[];
 }
 
 export interface GenesInformation {
@@ -115,7 +109,7 @@ export function makeTreeStructure(data: Partial<TreeStructure>): TreeStructure {
         partners: [],
         breedCount: 0,
         axieClass: 'aquatic',
-        axieGenes: makeAxieGenes({}),
+        // axieGenes: makeAxieGenes({}),
         children: [],
     };
 
