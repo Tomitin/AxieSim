@@ -1,4 +1,4 @@
-import { AxieChild } from '../models/axie';
+import { AxieChild } from '../models/state';
 import { NestableObject, NestedObject } from './models';
 
 export const mapAxieChildrenList = (childrenArray: AxieChild[]): string[] => {
@@ -19,19 +19,31 @@ export const mapAxieChildrenList = (childrenArray: AxieChild[]): string[] => {
  *
  * */
 export const nestObject = (items: NestableObject[], rootItemId: string): NestedObject => {
-    const nested: NestedObject[] = [];
+    // This function is curried with the sole purpose of skipping typescript validation of an array
+    const recursiveNest = (items: NestableObject[], rootItemId: string): NestedObject | [] => {
+        const nested: NestedObject[] = [];
+        let found = false;
 
-    items.forEach((item) => {
-        if (rootItemId === item.id) {
-            const hasChildren = item.children.length > 0;
-            nested.push({
-                ...item,
-                children: hasChildren ? item.children.map((child) => nestObject(items, child)) : [],
-            });
+        items.forEach((item) => {
+            if (rootItemId === item.id) {
+                found = true;
+                const hasChildren = item.children.length > 0;
+                nested.push({
+                    ...item,
+                    children: hasChildren ? item.children.flatMap((child) => nestObject(items, child)) : [],
+                });
+            }
+        });
+
+        // Before flatmap/found flag implementation, when the recursive function looked up a root child that didn't exist
+        // inside the array, parent item looked like: [undefined, undefined, ...], the way this was solved was by
+        // using flatmap since when it is returned [] flatmap ignores that child instead of returning undefined as before.
+        if (found === false) {
+            return [];
         }
-    });
-
-    return nested[0];
+        return nested[0];
+    };
+    return recursiveNest(items, rootItemId) as NestedObject;
 };
 
 /** Returns a scale where the bredding tree can be seen completely from the user point of view. */

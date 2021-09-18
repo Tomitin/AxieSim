@@ -23,29 +23,31 @@ import Backdrop from '@material-ui/core/Backdrop';
 import TreePreviewComponent from './components/treePreview/treePreview';
 import TreeComponent from './containers/tree/tree';
 import ClipboardTextComponent from '../../components/clipboardText/clipboardText';
+import { TreeStructure } from '../../models/breedingTree';
+import { TreeState } from '../../models/state';
 
 const BreedingTree: React.FunctionComponent = () => {
     const dispatch = useDispatch();
-    const isNewTreeSelected = useSelector((state) => getIsNewTreeSelected(state));
-    const treeDisplayData = useSelector((state) => getTreeDisplayData(state));
-    const isAppLoading = useSelector((state) => getIsAppLoading(state));
-    const treeList = useSelector((state) => getTreeList(state));
-    const selectedTreeId = useSelector((state) => getSelectedTreeId(state));
-    const [isSnackbarOpen, setIsSnackbarOpen] = React.useState(false);
-    const [searchTreesForm, setSearchTreesForm] = React.useState('');
-    const [filteredTreeList, setFilteredTreeList] = React.useState([]);
-    const [isDeleteModalOpen, setDeleteModalOpen] = React.useState(false);
-    const [isDonationsModalOpen, setIsDonationsModalOpen] = React.useState(false);
-    const [isSupportModalOpen, setIsSupportModalOpen] = React.useState(false);
-    const [treeIdToDelete, setTreeIdToDelete] = React.useState('');
-    const [snackBarMessage, setSnackbarMessage] = React.useState('');
+    const isNewTreeSelected: boolean = useSelector((state) => getIsNewTreeSelected(state));
+    const treeDisplayData: TreeStructure = useSelector((state) => getTreeDisplayData(state));
+    const isAppLoading: boolean = useSelector((state) => getIsAppLoading(state));
+    const treeList: TreeState[] = useSelector((state) => getTreeList(state));
+    const selectedTreeId: string = useSelector((state) => getSelectedTreeId(state));
+    const [isSnackbarOpen, setIsSnackbarOpen] = React.useState<boolean>(false);
+    const [searchTreesForm, setSearchTreesForm] = React.useState<string>('');
+    const [filteredTreeList, setFilteredTreeList] = React.useState<TreeState[]>([]);
+    const [isDeleteModalOpen, setDeleteModalOpen] = React.useState<boolean>(false);
+    const [isDonationsModalOpen, setIsDonationsModalOpen] = React.useState<boolean>(false);
+    const [isSupportModalOpen, setIsSupportModalOpen] = React.useState<boolean>(false);
+    const [treeIdToDelete, setTreeIdToDelete] = React.useState<string>('');
+    const [snackBarMessage, setSnackbarMessage] = React.useState<string>('');
     const [newTreeForm, setNewTreeForm] = React.useState({
         treeName: '',
         axieOne: '',
     });
 
     useEffect(() => {
-        const filteredTrees = treeList.filter((tree: any) => tree.title.toLowerCase().includes(searchTreesForm));
+        const filteredTrees = treeList.filter((tree: TreeState) => tree.title.toLowerCase().includes(searchTreesForm));
 
         setFilteredTreeList(filteredTrees);
     }, [searchTreesForm, treeList]);

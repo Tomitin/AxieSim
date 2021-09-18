@@ -1,5 +1,5 @@
 import axios from './axios.instance';
 
-export const getAxieDetails = (axieId) => axios.get(`/getgenes/${axieId}/all`);
+export const getAxieDetails = (axieId) => axios.get(`/getaxies/${axieId}`);
 
 export const getNonCachedAxieDetails = (axieId) => axios.get(`/invalidateaxie/${axieId}`);
