@@ -12,7 +12,6 @@ import {
     getIsAppLoading,
     getIsNewTreeSelected,
     getSelectedTreeId,
-    getTreeDisplayData,
     getTreeList,
 } from '../../core/redux/breedingTree/selectors';
 import AddIcon from '@material-ui/icons/Add';
@@ -23,13 +22,11 @@ import Backdrop from '@material-ui/core/Backdrop';
 import TreePreviewComponent from './components/treePreview/treePreview';
 import TreeComponent from './containers/tree/tree';
 import ClipboardTextComponent from '../../components/clipboardText/clipboardText';
-import { TreeStructure } from '../../models/breedingTree';
 import { TreeState } from '../../models/state';
 
 const BreedingTree: React.FunctionComponent = () => {
     const dispatch = useDispatch();
     const isNewTreeSelected: boolean = useSelector((state) => getIsNewTreeSelected(state));
-    const treeDisplayData: TreeStructure = useSelector((state) => getTreeDisplayData(state));
     const isAppLoading: boolean = useSelector((state) => getIsAppLoading(state));
     const treeList: TreeState[] = useSelector((state) => getTreeList(state));
     const selectedTreeId: string = useSelector((state) => getSelectedTreeId(state));
@@ -240,9 +237,7 @@ const BreedingTree: React.FunctionComponent = () => {
                         </form>
                     </Box>
                 )}
-                {!isAppLoading && !isNewTreeSelected && (
-                    <TreeComponent selectedTreeId={selectedTreeId} treeStructure={treeDisplayData} />
-                )}
+                {!isNewTreeSelected && !isAppLoading && <TreeComponent />}
             </Box>
             <Backdrop className="spinner-backdrop" open={isAppLoading}>
                 <CircularProgress color="inherit" />

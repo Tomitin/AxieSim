@@ -3,16 +3,14 @@
     min-height: 300px;
     display: flex;
     user-select: none;
+    position: relative;
     flex-direction: column;
 }
 
 .axie-profile-component .axie-profile-card .axie-profile-actions-container {
     flex: 1;
     align-items: flex-end !important;
-}
-
-.axie-profile-component .axie-profile-card .axie-profile-actions-container .axie-profile-action-button {
-    /* pointer-events: initial; */
+    width: 100%;
 }
 
 .axie-profile-component .axie-profile-card .axie-profile-content-container .axie-profile-content {
@@ -70,4 +68,14 @@
 
 .axie-profile-component .axie-profile-card .genes-row .genes-name-col .reptile-text {
     color: rgb(200, 138, 224);
+}
+
+.axie-profile-component .axie-profile-card .delete-icon-container {
+    position: absolute;
+    top: 0;
+    right: 0;
+}
+
+.axie-profile-component .axie-profile-card .delete-icon-container .delete-icon-button:hover {
+    color: #f50057;
 }

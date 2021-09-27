@@ -8,13 +8,15 @@ export const GET_AXIE_DETAILS_ERROR = 'GET_AXIE_DETAILS_ERROR';
 export const ADD_AXIE_TO_SELECTED_TREE = 'ADD_AXIE_TO_SELECTED_TREE';
 export const ADD_AXIE = 'ADD_AXIE';
 export const SUBMIT_NEW_TREE_FORM = 'SUBMIT_NEW_TREE_FORM';
-export const UPDATE_AXIE_TREE = 'UPDATE_AXIE_TREE';
+export const UPDATE_AXIE_BREEDS = 'UPDATE_AXIE_BREEDS';
 export const GET_NON_CACHED_AXIE_DETAILS_SUCCESS = 'GET_NON_CACHED_AXIE_DETAILS_SUCCESS';
 export const GET_NON_CACHED_AXIE_DETAILS_ERROR = 'GET_NON_CACHED_AXIE_DETAILS_ERROR';
 export const UPDATE_AXIE_TO_SELECTED_TREE = 'UPDATE_AXIE_TO_SELECTED_TREE';
 export const SET_LOADING = 'SET_LOADING';
 export const ADD_NEW_STATE = 'ADD_NEW_STATE';
 export const CLEAR_STATE = 'CLEAR_STATE';
+export const ADD_PARTNER_TO_AXIE = 'ADD_PARTNER_TO_AXIE';
+export const REMOVE_AXIE_SUBTREE = 'REMOVE_AXIE_SUBTREE';
 
 export const addNewTreeForm = () => ({
     type: ADD_NEW_TREE_FORM,
@@ -50,6 +52,11 @@ export const clearState = (payload) => ({
     payload,
 });
 
+export const removeAxieSubtree = (payload) => ({
+    type: REMOVE_AXIE_SUBTREE,
+    payload,
+});
+
 export const addAxieToSelectedTree = (payload) => ({
     type: ADD_AXIE_TO_SELECTED_TREE,
     payload,
@@ -80,8 +87,8 @@ export const getAxieDetailsError = (payload) => ({
     payload,
 });
 
-export const updateAxieTree = (payload) => ({
-    type: UPDATE_AXIE_TREE,
+export const updateAxieBreeds = (payload) => ({
+    type: UPDATE_AXIE_BREEDS,
     payload,
 });
 
@@ -97,5 +104,10 @@ export const getNonCachedAxieDetailsError = (payload) => ({
 
 export const updateAxieToSelectedTree = (payload) => ({
     type: UPDATE_AXIE_TO_SELECTED_TREE,
+    payload,
+});
+
+export const addPartnerToAxie = (payload) => ({
+    type: ADD_PARTNER_TO_AXIE,
     payload,
 });

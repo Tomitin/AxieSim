@@ -1,5 +1,5 @@
 import { createSelector } from 'reselect';
-import { AxieGenes, makeTreeStructure, TreeStructure } from '../../../models/breedingTree';
+import { makeTreeStructure, TreeStructure } from '../../../models/breedingTree';
 import { AxieState, TreeNode, TreeState } from '../../../models/state';
 import { NestableObject } from '../../../utils/models';
 import { nestObject } from '../../../utils/utils';
@@ -19,6 +19,9 @@ export const getTreeDisplayData = createSelector([getAxiesByIdSelector, getTreeL
         return makeTreeStructure({});
     }
     if (selectedTree.hierarchy.length === 0) return makeTreeStructure({});
+    // Probably should be added as a variable inside the state
+    const rootNode = selectedTree.hierarchy[0];
+    // Also, this may change when it exists the possibility to SEARCH PARENTS of ROOT node
     const flatTreeDisplayData: NestableObject[] = selectedTree.hierarchy.map((axieHierarchy: TreeNode) => {
         return {
             id: axieHierarchy.source,
@@ -26,13 +29,11 @@ export const getTreeDisplayData = createSelector([getAxiesByIdSelector, getTreeL
             // axieGenes: axiesById[axieHierarchy.source].traits as AxieGenes,
             breedCount: axiesById[axieHierarchy.source].breedCount as number,
             axieClass: axiesById[axieHierarchy.source].class as string,
+            isTreeRoot: rootNode.source === axieHierarchy.source,
             parents: [],
-            partners: [],
+            partners: axiesById[axieHierarchy.source].partners,
         };
     });
-
-    // Probably should be added as a variable inside the state
-    const rootNode = selectedTree.hierarchy[0];
 
     const nestedTreedisplayData = nestObject(flatTreeDisplayData, rootNode.source);
 
@@ -62,6 +63,11 @@ export const getAxiesList = createSelector(
         });
         return axiesList;
     },
+);
+
+export const getAxieById = createSelector(
+    (state: any) => state.breedingTreeApp.axies.byId,
+    (axiesById) => axiesById,
 );
 
 export const getTreeList = createSelector(

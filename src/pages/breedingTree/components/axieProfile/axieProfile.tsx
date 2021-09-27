@@ -1,15 +1,18 @@
 import React from 'react';
-import { Button, Card, CardActions, CardContent, CardMedia, Typography } from '@material-ui/core';
+import { Button, Card, CardActions, CardContent, CardMedia, IconButton, Typography } from '@material-ui/core';
+import CloseIcon from '@material-ui/icons/Close';
 import './axieProfile.css';
 import { memo } from 'react';
 import { AxieType } from '../../../../models/axie';
 interface AxieProfileComponentProps {
     // axieGenes: AxieGenes;
     axieId: string;
-    breedCount: number;
+    breedCount?: number;
     axieClass?: AxieType;
     size: 'small' | 'medium' | 'large';
-    onUpdateAxieClick: () => void;
+    onUpdateAxieClick?: () => void;
+    onDeleteAxieClick?: () => void;
+    onSearchParentsClick?: (axieId: string, motherId: string, fatherId: string) => void;
 }
 
 const AxieProfileComponent: React.FunctionComponent<AxieProfileComponentProps> = (props: AxieProfileComponentProps) => {
@@ -37,6 +40,13 @@ const AxieProfileComponent: React.FunctionComponent<AxieProfileComponentProps> =
         <div className="axie-profile-component">
             <Card className="axie-profile-card size-medium">
                 <div className="axie-profile-content-container">
+                    {!!props.onDeleteAxieClick && (
+                        <div className="delete-icon-container">
+                            <IconButton className="delete-icon-button" size="medium" onClick={props.onDeleteAxieClick}>
+                                <CloseIcon />
+                            </IconButton>
+                        </div>
+                    )}
                     <CardMedia
                         component="img"
                         draggable={false}
@@ -58,198 +68,22 @@ const AxieProfileComponent: React.FunctionComponent<AxieProfileComponentProps> =
                                 #{props.axieId}
                             </Typography>
                         </div>
-                        {/*<Box className="genes-row">
-                            <Box className="genes-name-col">
-                                <Typography
-                                    className={
-                                        'axie-class-text ' + getClassTextByAxieClass(props.axieGenes.eyes.d.class)
-                                    }
-                                >
-                                    {props.axieGenes.eyes.d.name}
-                                </Typography>
-                            </Box>
-                            <Box className="genes-name-col">
-                                <Typography
-                                    className={
-                                        'axie-class-text ' + getClassTextByAxieClass(props.axieGenes.eyes.r1.class)
-                                    }
-                                >
-                                    {props.axieGenes.eyes.r1.name}
-                                </Typography>
-                            </Box>
-                            <Box className="genes-name-col">
-                                <Typography
-                                    className={
-                                        'axie-class-text ' + getClassTextByAxieClass(props.axieGenes.eyes.r2.class)
-                                    }
-                                >
-                                    {props.axieGenes.eyes.r2.name}
-                                </Typography>
-                            </Box>
-                        </Box>
-                        <Divider />
-                        <Box className="genes-row">
-                            <Box className="genes-name-col">
-                                <Typography
-                                    className={
-                                        'axie-class-text ' + getClassTextByAxieClass(props.axieGenes.ears.d.class)
-                                    }
-                                >
-                                    {props.axieGenes.ears.d.name}
-                                </Typography>
-                            </Box>
-                            <Box className="genes-name-col">
-                                <Typography
-                                    className={
-                                        'axie-class-text ' + getClassTextByAxieClass(props.axieGenes.ears.r1.class)
-                                    }
-                                >
-                                    {props.axieGenes.ears.r1.name}
-                                </Typography>
-                            </Box>
-                            <Box className="genes-name-col">
-                                <Typography
-                                    className={
-                                        'axie-class-text ' + getClassTextByAxieClass(props.axieGenes.ears.r2.class)
-                                    }
-                                >
-                                    {props.axieGenes.ears.r2.name}
-                                </Typography>
-                            </Box>
-                        </Box>
-                        <Divider />
-                        <Box className="genes-row">
-                            <Box className="genes-name-col">
-                                <Typography
-                                    className={
-                                        'axie-class-text ' + getClassTextByAxieClass(props.axieGenes.mouth.d.class)
-                                    }
-                                >
-                                    {props.axieGenes.mouth.d.name}
-                                </Typography>
-                            </Box>
-                            <Box className="genes-name-col">
-                                <Typography
-                                    className={
-                                        'axie-class-text ' + getClassTextByAxieClass(props.axieGenes.mouth.r1.class)
-                                    }
-                                >
-                                    {props.axieGenes.mouth.r1.name}
-                                </Typography>
-                            </Box>
-                            <Box className="genes-name-col">
-                                <Typography
-                                    className={
-                                        'axie-class-text ' + getClassTextByAxieClass(props.axieGenes.mouth.r2.class)
-                                    }
-                                >
-                                    {props.axieGenes.mouth.r2.name}
-                                </Typography>
-                            </Box>
-                        </Box>
-                        <Divider />
-                        <Box className="genes-row">
-                            <Box className="genes-name-col">
-                                <Typography
-                                    className={
-                                        'axie-class-text ' + getClassTextByAxieClass(props.axieGenes.horn.d.class)
-                                    }
-                                >
-                                    {props.axieGenes.horn.d.name}
-                                </Typography>
-                            </Box>
-                            <Box className="genes-name-col">
-                                <Typography
-                                    className={
-                                        'axie-class-text ' + getClassTextByAxieClass(props.axieGenes.horn.r1.class)
-                                    }
-                                >
-                                    {props.axieGenes.horn.r1.name}
-                                </Typography>
-                            </Box>
-                            <Box className="genes-name-col">
-                                <Typography
-                                    className={
-                                        'axie-class-text ' + getClassTextByAxieClass(props.axieGenes.horn.r2.class)
-                                    }
-                                >
-                                    {props.axieGenes.horn.r2.name}
-                                </Typography>
-                            </Box>
-                        </Box>
-                        <Divider />
-                        <Box className="genes-row">
-                            <Box className="genes-name-col">
-                                <Typography
-                                    className={
-                                        'axie-class-text ' + getClassTextByAxieClass(props.axieGenes.back.d.class)
-                                    }
-                                >
-                                    {props.axieGenes.back.d.name}
-                                </Typography>
-                            </Box>
-                            <Box className="genes-name-col">
-                                <Typography
-                                    className={
-                                        'axie-class-text ' + getClassTextByAxieClass(props.axieGenes.back.r1.class)
-                                    }
-                                >
-                                    {props.axieGenes.back.r1.name}
-                                </Typography>
-                            </Box>
-                            <Box className="genes-name-col">
-                                <Typography
-                                    className={
-                                        'axie-class-text ' + getClassTextByAxieClass(props.axieGenes.back.r2.class)
-                                    }
-                                >
-                                    {props.axieGenes.back.r2.name}
-                                </Typography>
-                            </Box>
-                        </Box>
-                        <Divider />
-                        <Box className="genes-row">
-                            <Box className="genes-name-col">
-                                <Typography
-                                    className={
-                                        'axie-class-text ' + getClassTextByAxieClass(props.axieGenes.tail.d.class)
-                                    }
-                                >
-                                    {props.axieGenes.tail.d.name}
-                                </Typography>
-                            </Box>
-                            <Box className="genes-name-col">
-                                <Typography
-                                    className={
-                                        'axie-class-text ' + getClassTextByAxieClass(props.axieGenes.tail.r1.class)
-                                    }
-                                >
-                                    {props.axieGenes.tail.r1.name}
-                                </Typography>
-                            </Box>
-                            <Box className="genes-name-col">
-                                <Typography
-                                    className={
-                                        'axie-class-text ' + getClassTextByAxieClass(props.axieGenes.tail.r2.class)
-                                    }
-                                >
-                                    {props.axieGenes.tail.r2.name}
-                                </Typography>
-                            </Box>
-                        </Box>*/}
                     </CardContent>
                 </div>
                 <CardActions className="axie-profile-actions-container">
-                    <div>
+                    {props.onSearchParentsClick && (
                         <Button
                             className="axie-profile-action-button"
                             disableRipple={true}
                             size="small"
                             color="primary"
                             fullWidth={true}
+                            // onClick={props.onSearchParentsClick}
                         >
-                            <Typography variant="h5">Check breedability</Typography>
+                            <Typography variant="h5">Search parents</Typography>
                         </Button>
+                    )}
+                    {props.onUpdateAxieClick && (
                         <Button
                             className="axie-profile-action-button"
                             disableRipple={true}
@@ -260,7 +94,7 @@ const AxieProfileComponent: React.FunctionComponent<AxieProfileComponentProps> =
                         >
                             <Typography variant="h5">Search children</Typography>
                         </Button>
-                    </div>
+                    )}
                 </CardActions>
             </Card>
         </div>
