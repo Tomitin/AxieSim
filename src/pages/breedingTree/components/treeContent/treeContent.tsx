@@ -1,73 +1,51 @@
 import React from 'react';
 import { TreeStructure } from '../../../../models/breedingTree';
-import AxieProfileComponent from '../axieProfile/axieProfile';
+import DescendantsTreeComponent from './descendantsTree/descendantsTree';
 import './treeContent.css';
 
 interface TreeContentComponentProps {
+    isAppLoading: boolean;
     selectedTreeId: string;
+    forceMemoize?: boolean;
     treeStructure: TreeStructure;
     handleAxieUpdateClick: (axieId: string) => void;
+    handleAxieDeleteClick: (axieId: string) => void;
+    handleSearchParentsClick: (axieId: string, motherId: string, fatherId: string) => void;
 }
 
 let shouldMemoize = false;
 
 const TreeContentComponent: React.FunctionComponent<TreeContentComponentProps> = (props: TreeContentComponentProps) => {
-    const { id, parents, breedCount, axieClass, children } = props.treeStructure;
-
-    const hasChildren = children && children.length;
     return (
-        <>
-            {hasChildren ? (
-                <div className={parents.length === 0 ? 'axie-family-spacer' : 'axie-child'}>
-                    <div className="axie-parent-container">
-                        <div className="axie-parent">
-                            <AxieProfileComponent
-                                axieId={id}
-                                size="medium"
-                                breedCount={breedCount}
-                                axieClass={axieClass}
-                                onUpdateAxieClick={() => props.handleAxieUpdateClick(id)}
-                            />
-                        </div>
-                    </div>
-                    <div className="child-list-container">
-                        {children.map((child) => (
-                            <TreeContentComponent
-                                key={child.id}
-                                selectedTreeId={props.selectedTreeId}
-                                treeStructure={{ ...child }}
-                                handleAxieUpdateClick={props.handleAxieUpdateClick}
-                            />
-                        ))}
-                    </div>
-                </div>
-            ) : (
-                <div className="axie-child">
-                    <AxieProfileComponent
-                        axieId={id}
-                        size="medium"
-                        breedCount={breedCount}
-                        axieClass={axieClass}
-                        onUpdateAxieClick={() => props.handleAxieUpdateClick(id)}
-                    />
-                </div>
-            )}
-        </>
+        <div className="tree-content">
+            <DescendantsTreeComponent
+                treeStructure={props.treeStructure}
+                handleAxieUpdateClick={props.handleAxieUpdateClick}
+                handleAxieDeleteClick={props.handleAxieDeleteClick}
+            />
+        </div>
     );
 };
 
+// Since looking into a recursive object(the tree structure) every time is very expensive, we only trigger re-renders in specific scenarios
 export default React.memo(TreeContentComponent, (previousProps, newProps) => {
     // if user changed the selected tree, re-render the tree with the new data
     if (previousProps.selectedTreeId != newProps.selectedTreeId) {
         return false;
     }
 
-    // If the component is destroyed because screen is on loading, that means new data is coming so force re-render once until new loading happens
-    // TODO: find a better way since this depends on the if stament outside the component
-    if (shouldMemoize == false) {
+    // If tree stopped loading data from server, trigger a re-render
+    if (newProps.isAppLoading === true) {
         shouldMemoize = true;
+    } else if (newProps.isAppLoading === false && shouldMemoize) {
+        shouldMemoize = false;
         return false;
     }
 
-    return shouldMemoize;
+    // Wildcard boolean parameter to trigger a re-render if needed
+    if (!newProps.forceMemoize) {
+        return false;
+    }
+
+    return true;
 });

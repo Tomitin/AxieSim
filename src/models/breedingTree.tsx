@@ -40,6 +40,7 @@ export interface TreeStructure {
     partners: string[];
     breedCount: number;
     axieClass?: AxieType;
+    isTreeRoot: boolean;
     // axieGenes: AxieGenes;
     children: TreeStructure[];
 }
@@ -109,6 +110,7 @@ export function makeTreeStructure(data: Partial<TreeStructure>): TreeStructure {
         partners: [],
         breedCount: 0,
         axieClass: 'aquatic',
+        isTreeRoot: false,
         // axieGenes: makeAxieGenes({}),
         children: [],
     };

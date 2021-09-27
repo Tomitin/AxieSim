@@ -1,32 +1,32 @@
-.axie-parent-container {
+.tree-content .axie-parent-container {
     display: flex;
     justify-content: center;
     margin-bottom: 120px;
 }
 
-.child-list-container {
+.tree-content .child-list-container {
     display: flex;
     justify-content: center;
     position: relative;
 }
 
-.axie-family-spacer {
+.tree-content .axie-family-spacer {
     margin-right: 64px;
     position: relative;
 }
 
-.child-list-container::before {
+.tree-content .child-list-container::before {
     content: '';
     position: absolute;
-    top: -120px;
+    top: -95px;
     left: 50%;
     transform: translate(-50%, 0);
-    height: 55px;
+    height: 30px;
     background-color: blue;
     border: solid 5px blue;
 }
 
-.child-list-container > *::before {
+.tree-content .child-list-container > *::before {
     content: '';
     position: absolute;
     top: -60px;
@@ -38,11 +38,11 @@
     border: solid 5px orange;
 }
 
-.child-list-container > *:only-child::after {
+.tree-content .child-list-container > *:only-child::after {
     display: none;
 }
 
-.child-list-container > *::after {
+.tree-content .child-list-container > *::after {
     content: '';
     position: absolute;
     top: -60px;
@@ -51,42 +51,79 @@
     border-top: solid 5px blue;
 }
 
-.child-list-container > .axie-family-spacer::after {
+.tree-content .child-list-container > .axie-family-spacer::after {
     width: calc(100% + 64px);
 }
 
-.child-list-container > *:first-child::after {
+.tree-content .child-list-container > *:first-child::after {
     /* width is calculated by 64(margin of child) and 5(size of upside bar above axie child)  */
     width: calc(50% + 69px);
     right: -64px;
 }
 
-.child-list-container > *:last-child::after {
+.tree-content .child-list-container > *:last-child::after {
     width: calc(50% + 64px);
     left: -60px;
 }
 
-.axie-child {
+.tree-content .axie-child {
     position: relative;
     margin-right: 60px;
 }
 
-.axie-child:only-child {
+.tree-content .axie-child:only-child {
     margin-right: 0px;
 }
 
-.axie-child:last-child {
+.tree-content .axie-child:last-child {
     margin-right: 0px;
 }
 
-.axie-parent-container .axie-parent {
+.tree-content .axie-parent-container .axie-parent {
     margin-right: 40px;
+    position: relative;
 }
 
-.axie-parent-container .axie-parent:only-child {
+.tree-content .axie-parent-container .axie-parent::before {
+    content: '';
+    position: absolute;
+    bottom: -30px;
+    left: 50%;
+    height: 20px;
+    background-color: blue;
+    transform: translate(-50%, 0);
+
+    border: solid 5px blue;
+}
+
+.tree-content .axie-parent-container .axie-parent::after {
+    content: '';
+    position: absolute;
+    bottom: -30px;
+    width: calc(100% + 128px);
+    background-color: blue;
+    border-top: solid 5px blue;
+}
+
+.tree-content .axie-parent-container .axie-parent:first-child::after {
+    /* width is calculated by 64(margin of child) and 5(size of upside bar above axie child)  */
+    width: calc(50% + 69px);
+    right: -64px;
+}
+
+.tree-content .axie-parent-container .axie-parent:last-child::after {
+    width: calc(50% + 64px);
+    left: -60px;
+}
+
+.tree-content .axie-parent-container .axie-parent:only-child {
     margin-right: 0px;
 }
 
-.axie-parent-container .axie-parent:last-child {
+.tree-content .axie-parent-container .axie-parent:last-child {
     margin-right: 0px;
+}
+
+.tree-content .axie-child.axie-child-root .axie-family-spacer:first-of-type {
+    margin: 0;
 }

@@ -1,9 +1,13 @@
 import { IconButton, Typography } from '@material-ui/core';
 import React, { useEffect, useRef } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { TREE_DEPTH } from '../../../../core/constants/constants';
-import { addAxieToSelectedTree, addNewState, updateAxieTree } from '../../../../core/redux/breedingTree/actions';
-import { getSelectedTree } from '../../../../core/redux/breedingTree/selectors';
+import {
+    addAxieToSelectedTree,
+    addNewState,
+    removeAxieSubtree,
+    updateAxieBreeds,
+} from '../../../../core/redux/breedingTree/actions';
+import { getIsAppLoading, getSelectedTree, getTreeDisplayData } from '../../../../core/redux/breedingTree/selectors';
 import { TreeStructure } from '../../../../models/breedingTree';
 import {
     calculateVisibleTreeScale,
@@ -20,17 +24,18 @@ import CloudDownloadIcon from '@material-ui/icons/CloudDownload';
 import './tree.css';
 import UploadFileComponent from '../../../../components/uploadFile/uploadFile';
 import { TreeNode } from '../../../../models/state';
+import DialogComponent from '../../../../components/dialog/dialog';
 
-interface TreeComponentProps {
-    selectedTreeId: string;
-    treeStructure: TreeStructure;
-}
-
-const TreeComponent: React.FunctionComponent<TreeComponentProps> = (props: TreeComponentProps) => {
+const TreeComponent: React.FunctionComponent = () => {
     const dispatch = useDispatch();
+    const isAppLoading: boolean = useSelector((state) => getIsAppLoading(state));
     const selectedTree = useSelector((state) => getSelectedTree(state));
+    const treeDisplayData: TreeStructure = useSelector((state) => getTreeDisplayData(state));
     const [isPanning, setIsPanning] = React.useState<boolean>(false);
+    const [axieToDelete, setAxieToDelete] = React.useState<string>('');
+    const [isDeleteAxieModalOpen, setIsDeleteAxieModalOpen] = React.useState<boolean>(false);
     const [startPoint, setStartPoint] = React.useState({ x: 0, y: 0, viewBoxX: 0, viewBoxY: 0 });
+    const [forceTreeMemoization, setForceTreeMemoization] = React.useState<boolean>(true);
     const breedingTreeElement = useRef<HTMLDivElement>(null);
     const [viewBox, setViewBox] = React.useState({
         x: 0,
@@ -50,6 +55,10 @@ const TreeComponent: React.FunctionComponent<TreeComponentProps> = (props: TreeC
     useEffect(() => {
         setTreeDefaultState();
     }, [selectedTree]);
+
+    useEffect(() => {
+        setTreeDefaultState();
+    }, []);
 
     const setTreeDefaultState = () => {
         const breedingTreeNode = breedingTreeElement.current;
@@ -83,6 +92,10 @@ const TreeComponent: React.FunctionComponent<TreeComponentProps> = (props: TreeC
         }
     };
 
+    const handleSearchParentsClick = () => {
+        console.log('');
+    };
+
     const handleAxieUpdateClick = (axieId: string) => {
         const isAxieTreeNotAdded = selectedTree.hierarchy.every(
             (axieHierarchy: TreeNode) => axieHierarchy.source !== axieId,
@@ -90,7 +103,18 @@ const TreeComponent: React.FunctionComponent<TreeComponentProps> = (props: TreeC
         if (isAxieTreeNotAdded) {
             dispatch(addAxieToSelectedTree({ axieId, childrenList: [] }));
         }
-        dispatch(updateAxieTree({ axieId, searchDepth: TREE_DEPTH.AXIE_WITH_CHILDREN }));
+        const axieIdHierarchy = selectedTree.hierarchy.find(
+            (axieHierarchy: TreeNode) => axieHierarchy.source === axieId,
+        );
+        if (axieIdHierarchy) {
+            const childrenAlreadyAdded = axieIdHierarchy.targets;
+            dispatch(updateAxieBreeds({ axieId, childrenAlreadyAdded }));
+        }
+    };
+
+    const reloadTreeComponent = () => {
+        setForceTreeMemoization(false);
+        setTimeout(() => setForceTreeMemoization(true), 0);
     };
 
     const getCenterMousePos = (wheelEvent: React.WheelEvent, horizontalDirection: boolean): number => {
@@ -274,6 +298,24 @@ const TreeComponent: React.FunctionComponent<TreeComponentProps> = (props: TreeC
         }
     };
 
+    /* delete axie modal */
+
+    const handleAxieDeleteTreeClick = (axieId: string) => {
+        setIsDeleteAxieModalOpen(true);
+        setAxieToDelete(axieId);
+    };
+
+    const handleDeleteAxieModalClose = () => {
+        setIsDeleteAxieModalOpen(false);
+    };
+
+    const handleDeleteAxieConfirm = () => {
+        setIsDeleteAxieModalOpen(false);
+        dispatch(removeAxieSubtree({ axieId: axieToDelete }));
+        //Re-render tree
+        reloadTreeComponent();
+    };
+
     return (
         <div className="tree-component">
             {!selectedTree && (
@@ -298,9 +340,13 @@ const TreeComponent: React.FunctionComponent<TreeComponentProps> = (props: TreeC
                         ref={breedingTreeElement}
                     >
                         <TreeContentComponent
+                            isAppLoading={isAppLoading}
+                            handleSearchParentsClick={handleSearchParentsClick}
                             handleAxieUpdateClick={handleAxieUpdateClick}
-                            treeStructure={props.treeStructure}
+                            handleAxieDeleteClick={handleAxieDeleteTreeClick}
+                            treeStructure={treeDisplayData}
                             selectedTreeId={selectedTree.id}
+                            forceMemoize={forceTreeMemoization}
                         />
                         <div className="middle-point-test"></div>
                     </div>
@@ -325,6 +371,16 @@ const TreeComponent: React.FunctionComponent<TreeComponentProps> = (props: TreeC
                     </div>
                 </div>
             )}
+
+            <DialogComponent
+                title="Are you sure?"
+                description="You can obtain the data again by searching children on axie's parent."
+                isOpen={isDeleteAxieModalOpen}
+                acceptButtontitle="Delete"
+                closeButtontitle="Cancel"
+                handleAccept={handleDeleteAxieConfirm}
+                handleClose={handleDeleteAxieModalClose}
+            />
         </div>
     );
 };

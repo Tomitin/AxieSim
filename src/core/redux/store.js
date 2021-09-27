@@ -29,9 +29,7 @@ store.subscribe(
         const breedingTreeAppState = store.getState().breedingTreeApp;
         saveState({
             breedingTreeApp: {
-                treeSelected: breedingTreeAppState.treeSelected,
-                trees: breedingTreeAppState.trees,
-                axies: breedingTreeAppState.axies,
+                ...breedingTreeAppState,
             },
         });
     }, minimumWaitMiliseconds),

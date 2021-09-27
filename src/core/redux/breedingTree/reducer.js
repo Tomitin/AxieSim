@@ -1,4 +1,5 @@
 import { v4 } from 'node-uuid';
+import { filterAxieTreeArray } from '../../../utils/utils';
 import * as actions from './actions';
 
 const initialState = {
@@ -38,6 +39,32 @@ export const breedingTreeReducer = (state = initialState, { type, payload }) => 
                     treeSelected: null,
                 },
             };
+        case actions.REMOVE_AXIE_SUBTREE:
+            const axieTreeToDelete = filterAxieTreeArray(
+                state.trees.byId[state.trees.treeSelected].hierarchy,
+                payload.axieId,
+            );
+            const filteredHierarchy = state.trees.byId[state.trees.treeSelected].hierarchy.filter(
+                (axieSubtree) => axieTreeToDelete.indexOf(axieSubtree.source) === -1,
+            );
+            return {
+                ...state,
+                trees: {
+                    ...state.trees,
+                    byId: {
+                        ...state.trees.byId,
+                        [state.trees.treeSelected]: {
+                            ...state.trees.byId[state.trees.treeSelected],
+                            hierarchy: filteredHierarchy.map((axieHierarchy) => {
+                                return {
+                                    ...axieHierarchy,
+                                    targets: axieHierarchy.targets.filter((targetId) => targetId !== payload.axieId),
+                                };
+                            }),
+                        },
+                    },
+                },
+            };
         case actions.ADD_AXIE_TO_SELECTED_TREE:
             return {
                 ...state,
@@ -54,6 +81,21 @@ export const breedingTreeReducer = (state = initialState, { type, payload }) => 
                                     targets: payload.childrenList,
                                 },
                             ],
+                        },
+                    },
+                },
+            };
+        case actions.ADD_PARTNER_TO_AXIE:
+            const axiePartnersList = state.axies.byId[payload.axieId].partners;
+            return {
+                ...state,
+                axies: {
+                    ...state.axies,
+                    byId: {
+                        ...state.axies.byId,
+                        [payload.axieId]: {
+                            ...state.axies.byId[payload.axieId],
+                            partners: [...new Set([...axiePartnersList, payload.partnerId])],
                         },
                     },
                 },
@@ -100,6 +142,7 @@ export const breedingTreeReducer = (state = initialState, { type, payload }) => 
                         ...state.axies.byId,
                         [payload.axie.id]: {
                             ...payload.axie,
+                            partners: [],
                         },
                     },
                     allIds: [...new Set([...state.axies.allIds, payload.axie.id])],

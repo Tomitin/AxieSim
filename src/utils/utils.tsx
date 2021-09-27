@@ -1,5 +1,6 @@
 import { AxieChild } from '../models/state';
 import { NestableObject, NestedObject } from './models';
+import { TreeNode } from '../models/state';
 
 export const mapAxieChildrenList = (childrenArray: AxieChild[]): string[] => {
     return childrenArray.map((axieChild: AxieChild) => axieChild.id);
@@ -44,6 +45,20 @@ export const nestObject = (items: NestableObject[], rootItemId: string): NestedO
         return nested[0];
     };
     return recursiveNest(items, rootItemId) as NestedObject;
+};
+
+/**
+ * From a tree with various branches-or subtrees- return a subtree array based on the root axie id
+ */
+export const filterAxieTreeArray = (flatTree: TreeNode[], filterAxieId: string, treeArray: string[] = []): string[] => {
+    flatTree.map((axieTree) => {
+        if (axieTree.source === filterAxieId) {
+            treeArray.push(axieTree.source);
+            axieTree.targets.map((axieTreeChildId) => filterAxieTreeArray(flatTree, axieTreeChildId, treeArray));
+        }
+    });
+
+    return treeArray;
 };
 
 /** Returns a scale where the bredding tree can be seen completely from the user point of view. */
