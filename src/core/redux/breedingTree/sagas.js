@@ -40,15 +40,16 @@ function* updateAxieBreeds(action) {
         const response = yield call(Api.getNonCachedAxieDetails, action.payload.axieId);
 
         /* When class is null, it means that this child is still an egg. We don't use them. */
-        const adultAxiesList = response.data.children.filter((child) => {
-            if (child.class !== null) {
-                const isNewbornChild = action.payload.childrenAlreadyAdded.every((childId) => childId !== child.id);
-                if (isNewbornChild) {
-                    return child;
-                }
-            }
-        });
-        const childrenToSearch = mapAxieChildrenList(adultAxiesList);
+        // const adultAxiesList = response.data.children.filter((child) => {
+        //     if (child.class !== null) {
+        //         const isNewbornChild = action.payload.childrenAlreadyAdded.every((childId) => childId !== child.id);
+        //         if (isNewbornChild) {
+        //             return child;
+        //         }
+        //     }
+        // });
+
+        const childrenToSearch = mapAxieChildrenList(response.data.children);
         const formattedChildrenList = [...action.payload.childrenAlreadyAdded, ...childrenToSearch];
 
         yield put(getNonCachedAxieDetailsSuccess({ axie: { ...response.data, children: formattedChildrenList } }));

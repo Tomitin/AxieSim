@@ -2,7 +2,6 @@ import React from 'react';
 import { Button, Card, CardActions, CardContent, CardMedia, IconButton, Typography } from '@material-ui/core';
 import CloseIcon from '@material-ui/icons/Close';
 import './axieProfile.css';
-import { memo } from 'react';
 import { AxieType } from '../../../../models/axie';
 interface AxieProfileComponentProps {
     // axieGenes: AxieGenes;
@@ -10,32 +9,13 @@ interface AxieProfileComponentProps {
     breedCount?: number;
     axieClass?: AxieType;
     size: 'small' | 'medium' | 'large';
+    axieImageSrc: string;
     onUpdateAxieClick?: () => void;
     onDeleteAxieClick?: () => void;
     onSearchParentsClick?: (axieId: string, motherId: string, fatherId: string) => void;
 }
 
 const AxieProfileComponent: React.FunctionComponent<AxieProfileComponentProps> = (props: AxieProfileComponentProps) => {
-    /** This function should not exist, good approach is to iterate over all axie parts and do a loop once */
-    // const getClassTextByAxieClass = (axieClass: AxieType) => {
-    //     switch (axieClass) {
-    //         case 'aquatic':
-    //             return 'aquatic-text';
-    //         case 'beast':
-    //             return 'beast-text';
-    //         case 'plant':
-    //             return 'plant-text';
-    //         case 'reptile':
-    //             return 'reptile-text';
-    //         case 'bird':
-    //             return 'bird-text';
-    //         case 'bug':
-    //             return 'bug-text';
-    //         default:
-    //             return '';
-    //     }
-    // };
-
     return (
         <div className="axie-profile-component">
             <Card className="axie-profile-card size-medium">
@@ -51,8 +31,8 @@ const AxieProfileComponent: React.FunctionComponent<AxieProfileComponentProps> =
                         component="img"
                         draggable={false}
                         alt={props.axieClass ? props.axieClass : 'axie image'}
-                        height="60"
-                        image={`https://storage.googleapis.com/assets.axieinfinity.com/axies/${props.axieId}/axie/axie-full-transparent.png`}
+                        height="90"
+                        image={props.axieImageSrc}
                         title={props.axieClass ? props.axieClass : 'axie image'}
                     />
                     <CardContent className="axie-profile-content">
@@ -101,4 +81,4 @@ const AxieProfileComponent: React.FunctionComponent<AxieProfileComponentProps> =
     );
 };
 
-export default memo(AxieProfileComponent);
+export default AxieProfileComponent;
