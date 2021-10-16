@@ -1,0 +1,35 @@
+.market-code-generator {
+    padding-top: 48px;
+}
+
+.market-code-generator .axie-form {
+    margin: 24px;
+}
+
+.market-code-generator .axie-form .generated-code {
+    max-width: 600px;
+}
+
+.market-code-generator .title-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.market-code-generator .axie-genes-form-container {
+    display: flex;
+    margin-top: 40px;
+}
+
+.market-code-generator .axie-genes-form-container .side-form {
+    margin: 40px;
+}
+
+.market-code-generator .axie-genes-form-container .slider-container {
+    width: 200px;
+    margin-bottom: 20px;
+}
+
+.market-code-generator .axie-genes-form-container .form-control {
+    width: 300px;
+}
