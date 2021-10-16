@@ -4,6 +4,7 @@ import './App.css';
 import Footer from './components/footer/footer';
 import Navbar from './components/navbar/navbar';
 import BreedingTree from './pages/breedingTree/breedingTree';
+import MarketCodeGenerator from './pages/marketCodeGenerator/marketCodeGenerator';
 // import ForgotPassword from './pages/forgotPassword/forgotPassword';
 // import Home from './pages/home/home';
 // import Login from './pages/login/login';
@@ -16,6 +17,9 @@ const App: React.FunctionComponent = ({ location }: any) => {
             <Navbar></Navbar>
             <main className="content">
                 <Switch>
+                    <Route path="/market-code-generator">
+                        <MarketCodeGenerator />
+                    </Route>
                     <Route path="/">
                         <BreedingTree />
                     </Route>
