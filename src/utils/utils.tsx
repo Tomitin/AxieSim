@@ -6,6 +6,17 @@ export const mapAxieChildrenList = (childrenArray: AxieChild[]): string[] => {
     return childrenArray.map((axieChild: AxieChild) => axieChild.id);
 };
 
+/** Returns the link of the axie image.
+ * mixed breed parameter is true when the axie to search is
+ * dusk/mech/dawn
+ */
+export const getAxieImageSrc = (axieId: string, isMixedBreed: boolean): string => {
+    if (isMixedBreed) {
+        return 'https://storage.googleapis.com/axie-cdn/avatars/egg/egg-full-transparent.png';
+    }
+    return `https://storage.googleapis.com/assets.axieinfinity.com/axies/${axieId}/axie/axie-full-transparent.png`;
+};
+
 /**
  * Recursive function that given a flat array returns a nested object. Big O probably n**2
  *

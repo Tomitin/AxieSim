@@ -22,7 +22,6 @@ const DescendantsTreeComponent: React.FunctionComponent<DescendantsTreeComponent
                         <div className="axie-parent">
                             <AxieProfileComponent
                                 axieId={id}
-                                axieImageSrc={`https://storage.googleapis.com/assets.axieinfinity.com/axies/${id}/axie/axie-full-transparent.png`}
                                 size="medium"
                                 axieClass={axieClass}
                                 onUpdateAxieClick={() => props.handleAxieUpdateClick(id)}
@@ -31,11 +30,7 @@ const DescendantsTreeComponent: React.FunctionComponent<DescendantsTreeComponent
                         </div>
                         {partners.map((partnerId) => (
                             <div className="axie-parent" key={partnerId}>
-                                <AxieProfileComponent
-                                    axieImageSrc={`https://storage.googleapis.com/assets.axieinfinity.com/axies/${id}/axie/axie-full-transparent.png`}
-                                    axieId={partnerId}
-                                    size="medium"
-                                />
+                                <AxieProfileComponent axieId={partnerId} size="medium" />
                             </div>
                         ))}
                     </div>
@@ -52,24 +47,13 @@ const DescendantsTreeComponent: React.FunctionComponent<DescendantsTreeComponent
                 </div>
             ) : (
                 <div className="axie-child">
-                    {axieClass ? (
-                        <AxieProfileComponent
-                            axieId={id}
-                            axieImageSrc={`https://storage.googleapis.com/assets.axieinfinity.com/axies/${id}/axie/axie-full-transparent.png`}
-                            size="medium"
-                            axieClass={axieClass}
-                            onDeleteAxieClick={isTreeRoot ? undefined : () => props.handleAxieDeleteClick(id)}
-                            onUpdateAxieClick={() => props.handleAxieUpdateClick(id)}
-                        />
-                    ) : (
-                        <AxieProfileComponent
-                            axieId={id}
-                            axieImageSrc={`https://storage.googleapis.com/axie-cdn/avatars/egg/egg-full-transparent.png`}
-                            size="medium"
-                            axieClass={axieClass}
-                            onDeleteAxieClick={isTreeRoot ? undefined : () => props.handleAxieDeleteClick(id)}
-                        />
-                    )}
+                    <AxieProfileComponent
+                        axieId={id}
+                        size="medium"
+                        axieClass={axieClass}
+                        onDeleteAxieClick={isTreeRoot ? undefined : () => props.handleAxieDeleteClick(id)}
+                        onUpdateAxieClick={() => props.handleAxieUpdateClick(id)}
+                    />
                 </div>
             )}
         </>
