@@ -16,6 +16,9 @@ const MarketCodeGenerator: React.FunctionComponent = () => {
     const [axieCards, setAxieCards] = React.useState<any>();
     const [breedCount, setBreedCount] = React.useState<number[]>([0, 7]);
     const [pureness, setPureness] = React.useState<any>(0);
+    const [marketPage, setMarketPage] = React.useState<any>(1);
+    const [maxAxiePrice, setMaxAxiePrice] = React.useState<any>(1000);
+    const [maxAxiesSearch, setMaxAxiesSearch] = React.useState<any>(100);
     const [formState, setFormState] = React.useState<any>(formData);
     const [isLoading, setIsLoading] = React.useState(true);
     const handleChange = (event: React.ChangeEvent<{ name?: string; value: unknown }>) => {
@@ -39,6 +42,18 @@ const MarketCodeGenerator: React.FunctionComponent = () => {
 
     const handlePurenessChange = (event: React.ChangeEvent<unknown>, newValue: number[] | number) => {
         setPureness(newValue);
+    };
+
+    const handleMaxAxiesSearchChange = (event: React.ChangeEvent<unknown>, newValue: number[] | number) => {
+        setMaxAxiesSearch(newValue);
+    };
+
+    const handleMarketPageChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+        setMarketPage(event.target.value == '0' ? '1' : event.target.value);
+    };
+
+    const handleMaxAxiePriceChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+        setMaxAxiePrice(event.target.value);
     };
 
     useEffect(() => {
@@ -122,12 +137,14 @@ const MarketCodeGenerator: React.FunctionComponent = () => {
         const arrayItemsRegex = new RegExp(/[\[|\]|\"]/, 'g');
         const formattedPureness = 'pureness,' + pureness;
         const formattedBreedCount = 'breedcount,' + JSON.stringify(breedCount).replaceAll(arrayItemsRegex, '');
+        const formattedMaxAxiePrice = 'maxprice,' + maxAxiePrice;
+        const formattedMarketPage = 'marketpage,' + marketPage;
+        const formattedMaxAxieSearch = 'maxsearch,' + maxAxiesSearch;
 
         const formattedGenes = getFormattedGenes();
-        // breedCount pureness formState
-        const formattedString = `${formattedGenes}${formattedPureness}/${formattedBreedCount}`;
+        const formattedString = `${formattedGenes}${formattedPureness}/${formattedBreedCount}/${formattedMaxAxiePrice}/${formattedMarketPage}/${formattedMaxAxieSearch}`;
 
-        return '!notifyme ' + formattedString;
+        return formattedString;
     };
     return (
         <div className="market-code-generator">
@@ -152,6 +169,9 @@ const MarketCodeGenerator: React.FunctionComponent = () => {
                     </div>
                     <div className="axie-genes-form-container">
                         <div className="side-form">
+                            <Typography variant="h6">
+                                <strong>Axie filters:</strong>
+                            </Typography>
                             <div className="slider-container">
                                 Breed count:
                                 <Slider
@@ -168,6 +188,50 @@ const MarketCodeGenerator: React.FunctionComponent = () => {
                                     onChange={handlePurenessChange}
                                     valueLabelDisplay="auto"
                                     max={6}
+                                />
+                            </div>
+                            <div className="slider-container">
+                                Max axie price(ETH):
+                                <input
+                                    type="number"
+                                    onChange={handleMaxAxiePriceChange}
+                                    value={maxAxiePrice}
+                                    min="0"
+                                    onKeyPress={(event) => {
+                                        if (event.key === '+' || event.key === '-') {
+                                            event.preventDefault();
+                                        }
+                                    }}
+                                />
+                            </div>
+                            <hr />
+                            <Typography variant="h6">
+                                <strong>Market filters:</strong>
+                            </Typography>
+                            <div className="slider-container">
+                                Max axies to search:
+                                <Slider
+                                    value={maxAxiesSearch}
+                                    onChange={handleMaxAxiesSearchChange}
+                                    valueLabelDisplay="auto"
+                                    min={1}
+                                    max={100}
+                                />
+                            </div>
+                            <div className="slider-container">
+                                Market page:
+                                <input
+                                    type="number"
+                                    onChange={handleMarketPageChange}
+                                    value={marketPage}
+                                    defaultValue="1"
+                                    min="1"
+                                    step="1"
+                                    onKeyPress={(event) => {
+                                        if (!!event.key.match(/[\.\+\-]/)) {
+                                            event.preventDefault();
+                                        }
+                                    }}
                                 />
                             </div>
                         </div>

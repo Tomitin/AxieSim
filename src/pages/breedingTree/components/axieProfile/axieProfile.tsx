@@ -3,19 +3,20 @@ import { Button, Card, CardActions, CardContent, CardMedia, IconButton, Typograp
 import CloseIcon from '@material-ui/icons/Close';
 import './axieProfile.css';
 import { AxieType } from '../../../../models/axie';
+import { getAxieImageSrc } from '../../../../utils/utils';
 interface AxieProfileComponentProps {
     // axieGenes: AxieGenes;
     axieId: string;
     breedCount?: number;
     axieClass?: AxieType;
     size: 'small' | 'medium' | 'large';
-    axieImageSrc: string;
     onUpdateAxieClick?: () => void;
     onDeleteAxieClick?: () => void;
     onSearchParentsClick?: (axieId: string, motherId: string, fatherId: string) => void;
 }
 
 const AxieProfileComponent: React.FunctionComponent<AxieProfileComponentProps> = (props: AxieProfileComponentProps) => {
+    const axieTitle = props.axieClass ? props.axieClass : 'axie image';
     return (
         <div className="axie-profile-component">
             <Card className="axie-profile-card size-medium">
@@ -30,10 +31,10 @@ const AxieProfileComponent: React.FunctionComponent<AxieProfileComponentProps> =
                     <CardMedia
                         component="img"
                         draggable={false}
-                        alt={props.axieClass ? props.axieClass : 'axie image'}
+                        alt={axieTitle}
                         height="90"
-                        image={props.axieImageSrc}
-                        title={props.axieClass ? props.axieClass : 'axie image'}
+                        image={getAxieImageSrc(props.axieId, !props.axieClass)}
+                        title={axieTitle}
                     />
                     <CardContent className="axie-profile-content">
                         <div className="axie-info-container">
