@@ -25,8 +25,8 @@ const Success: React.FunctionComponent = () => {
         const genesKeys = Object.keys(formState);
         let formattedGenes = '';
         genesKeys.forEach((geneKey, index) => {
-            const [part, geneType] = geneKey.split('-');
-            const formValue = formState[part + '-' + geneType].value;
+            const [part] = geneKey.split('-');
+            const formValue = formState[geneKey].value.map((option: any) => option.id);
             // Every 3 iteration means D, R1, R2
             if ((index + 1) % 3 === 0) {
                 if (formValue.length === 0 || formValue.includes(`${part}-wildcard`)) {
