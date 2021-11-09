@@ -43,7 +43,7 @@ const App: React.FunctionComponent = ({ location }: any) => {
                     </Route> */}
                 </Switch>
             </main>
-            {location.pathname !== '/' && <Footer />}
+            {location.pathname !== '/' || (!location.pathname.startsWith('/market-code-generator') && <Footer />)}
         </div>
     );
 };

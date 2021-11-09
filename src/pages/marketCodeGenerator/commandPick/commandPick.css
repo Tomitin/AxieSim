@@ -1,0 +1,29 @@
+.command-selection-container {
+    display: flex;
+    justify-content: space-between;
+    height: 100%;
+}
+
+.command-selection-container .command-section-container {
+    flex: 1;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100%;
+}
+
+.command-selection-container .grid-container {
+    display: flex;
+    justify-content: center;
+}
+
+.command-selection-container .command-section-container .command-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.command-selection-container .command-section-container .command-container .command-help-container {
+    width: 300px;
+    margin-bottom: 16px;
+}
