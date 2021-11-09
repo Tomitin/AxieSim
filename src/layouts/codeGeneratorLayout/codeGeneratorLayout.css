@@ -1,0 +1,14 @@
+.code-generator {
+    margin-top: 72px;
+    display: flex;
+    flex-direction: column;
+}
+
+.code-generator .title-container {
+    display: flex;
+    justify-content: center;
+}
+
+.code-generator .content-container {
+    flex: 1;
+}

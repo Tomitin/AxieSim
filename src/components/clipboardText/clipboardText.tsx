@@ -1,5 +1,5 @@
 import { Box } from '@material-ui/core';
-import React from 'react';
+import React, { ReactNode } from 'react';
 import ClipboardSnackbarComponent from '../clipboardSnackbar/clipboardSnackbar';
 import './clipboardText.css';
 
@@ -7,6 +7,7 @@ interface ClipboardTextComponentProps {
     textToCopy: string;
     messageSuccess?: string;
     fullWidth?: boolean;
+    children?: ReactNode;
 }
 
 const ClipboardTextComponent: React.FunctionComponent<ClipboardTextComponentProps> = (
@@ -18,7 +19,7 @@ const ClipboardTextComponent: React.FunctionComponent<ClipboardTextComponentProp
             display="flex"
             alignItems="center"
         >
-            <Box className="text-container">{props.textToCopy}</Box>
+            <Box className="text-container">{!!props.children ? props.children : props.textToCopy}</Box>
             <ClipboardSnackbarComponent textToCopy={props.textToCopy} messageSuccess={props.messageSuccess} />
         </Box>
     );

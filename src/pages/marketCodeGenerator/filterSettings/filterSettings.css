@@ -1,0 +1,23 @@
+.filter-settings {
+    margin-top: 40px;
+}
+
+.filter-settings .settings-form {
+    display: flex;
+    justify-content: center;
+    margin: 0 32px;
+}
+
+.filter-settings .settings-form .slider-container {
+    margin: 16px 0;
+}
+
+.filter-settings .footer {
+    margin-top: 40px;
+    display: flex;
+    justify-content: flex-end;
+}
+
+.filter-settings .footer .step-button {
+    margin-right: 16px;
+}

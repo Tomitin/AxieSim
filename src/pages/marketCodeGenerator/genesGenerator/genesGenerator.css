@@ -1,0 +1,26 @@
+.genes-generator {
+    margin-top: 40px;
+}
+
+.genes-generator .content-container {
+    width: 100%;
+}
+
+.genes-generator .content-container .genes-table-container {
+    display: flex;
+    justify-content: center;
+}
+
+.genes-generator .content-container .form-control {
+    width: 270px;
+}
+
+.genes-generator .content-container .footer {
+    margin-top: 40px;
+    display: flex;
+    justify-content: flex-end;
+}
+
+.genes-generator .content-container .footer .step-button {
+    margin-right: 16px;
+}

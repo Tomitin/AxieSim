@@ -1,0 +1,23 @@
+.success-container {
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+}
+
+.success-container .success-content {
+    flex: 1;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.success-container .footer {
+    margin: 16px 0;
+    display: flex;
+    justify-content: flex-end;
+}
+
+.success-container .footer .step-button {
+    margin-right: 16px;
+}

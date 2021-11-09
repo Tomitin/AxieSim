@@ -15,5 +15,6 @@ export const AXIE_AGE = {
 };
 
 export const AXIE_PARTS = ['eyes', 'ears', 'mouth', 'horn', 'back', 'tail'];
+export const AXIE_CLASSES = ['Aquatic', 'Beast', 'Reptile', 'Bug', 'Plant', 'Bird', 'Mech', 'Dusk', 'Dawn'];
 export const AXIE_PARTS_CLASSES = ['aquatic', 'beast', 'reptile', 'bug', 'plant', 'bird'];
 export const GENES_TYPES = ['d', 'r1', 'r2'];
