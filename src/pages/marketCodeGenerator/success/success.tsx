@@ -57,6 +57,7 @@ const Success: React.FunctionComponent = () => {
         const formattedPureness = 'pureness,' + filters.pureness;
         const formattedBreedCount = 'breedcount,' + JSON.stringify(filters.breedCount).replaceAll(arrayItemsRegex, '');
         const formattedMaxAxiePrice = filters.maxPrice ? 'maxprice,' + filters.maxPrice : '';
+        const formattedMaxAxieId = filters.maxId ? 'maxid,' + filters.maxId : '';
         const formattedMarketPage = 'marketpage,' + filters.marketPage;
         const formattedMaxAxieSearch = 'maxsearch,' + filters.maxAxiesToSearch;
         const formattedExpirateDate = filters.expirateDate ? 'notificationlife,' + filters.expirateDate : '';
@@ -74,7 +75,9 @@ const Success: React.FunctionComponent = () => {
             !!formattedMaxAxiePrice ? '/' + formattedMaxAxiePrice : ''
         }${isSearchMarket ? '/' + formattedMarketPage : ''}${isSearchMarket ? '/' + formattedMaxAxieSearch : ''}${
             !!formattedExpirateDate ? '/' + formattedExpirateDate : ''
-        }/${formattedSpeed}${!!formattedAxieClasses ? '/' + formattedAxieClasses : ''}`;
+        }/${formattedSpeed}${!!formattedAxieClasses ? '/' + formattedAxieClasses : ''}${
+            !!formattedMaxAxieId ? '/' + formattedMaxAxieId : ''
+        }`;
 
         return formattedString;
     };
