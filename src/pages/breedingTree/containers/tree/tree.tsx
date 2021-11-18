@@ -93,7 +93,7 @@ const TreeComponent: React.FunctionComponent = () => {
     };
 
     const handleSearchParentsClick = () => {
-        console.log('');
+        console.log('s');
     };
 
     const handleAxieUpdateClick = (axieId: string) => {
