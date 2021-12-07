@@ -53,6 +53,7 @@ const Success: React.FunctionComponent = () => {
     const formatFormContent = () => {
         const filters = formDataState.filters;
         const isSearchMarket = formDataState.commandName === '!searchmarket';
+        const isSearchSales = formDataState.commandName === '!searchsales';
         const arrayItemsRegex = new RegExp(/[\[|\]|\"]/, 'g');
         const formattedPureness = 'pureness,' + filters.pureness;
         const formattedBreedCount = 'breedcount,' + JSON.stringify(filters.breedCount).replaceAll(arrayItemsRegex, '');
@@ -73,11 +74,11 @@ const Success: React.FunctionComponent = () => {
             formDataState.commandName
         } ${formattedGenes}${formattedPureness}/${formattedBreedCount}${
             !!formattedMaxAxiePrice ? '/' + formattedMaxAxiePrice : ''
-        }${isSearchMarket ? '/' + formattedMarketPage : ''}${isSearchMarket ? '/' + formattedMaxAxieSearch : ''}${
-            !!formattedExpirateDate ? '/' + formattedExpirateDate : ''
-        }/${formattedSpeed}${!!formattedAxieClasses ? '/' + formattedAxieClasses : ''}${
-            !!formattedMaxAxieId ? '/' + formattedMaxAxieId : ''
-        }`;
+        }${isSearchMarket ? '/' + formattedMarketPage : ''}${
+            isSearchMarket || isSearchSales ? '/' + formattedMaxAxieSearch : ''
+        }${!!formattedExpirateDate ? '/' + formattedExpirateDate : ''}/${formattedSpeed}${
+            !!formattedAxieClasses ? '/' + formattedAxieClasses : ''
+        }${!!formattedMaxAxieId ? '/' + formattedMaxAxieId : ''}`;
 
         return formattedString;
     };

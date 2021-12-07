@@ -50,6 +50,20 @@ const CommandPick: React.FunctionComponent = () => {
                         </div>
                     </div>
                 </Grid>
+                <Grid item sm={12} md={6}>
+                    <div className="command-section-container">
+                        <div className="command-container">
+                            <div className="command-help-container">
+                                <Typography align="center">
+                                    Search the most recent sales of the genes you want.
+                                </Typography>
+                            </div>
+                            <Button onClick={() => onNextStepClick('!searchsales')} variant="contained">
+                                Sales search
+                            </Button>
+                        </div>
+                    </div>
+                </Grid>
             </Grid>
         </div>
     );
