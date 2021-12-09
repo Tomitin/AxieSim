@@ -192,56 +192,53 @@ const FilterSettings: React.FunctionComponent = () => {
                                 />
                             </div>
 
-                            {commandName === '!notifyme' ||
-                                (commandName === '!searchmarket' && (
-                                    <>
-                                        <div className="slider-container">
-                                            Pureness:
-                                            <Slider
-                                                marks={purenessMarks}
-                                                value={pureness}
-                                                onChange={handlePurenessChange}
-                                                valueLabelDisplay="auto"
-                                                max={6}
-                                            />
-                                        </div>
-                                    </>
-                                ))}
-                            {commandName === '!notifyme' ||
-                                (commandName === '!searchmarket' && (
-                                    <>
-                                        <div className="slider-container">
-                                            Speed ⚡:
-                                            <Slider
-                                                marks={speedMarks}
-                                                value={speed}
-                                                onChange={handleSpeedChange}
-                                                valueLabelDisplay="auto"
-                                                min={27}
-                                                max={61}
-                                            />
-                                        </div>
-                                    </>
-                                ))}
-                            {commandName === '!notifyme' ||
-                                (commandName === '!searchmarket' && (
-                                    <>
-                                        <div className="slider-container">
-                                            Max axie price(ETH):
-                                            <input
-                                                type="number"
-                                                onChange={handleMaxAxiePriceChange}
-                                                value={maxAxiePrice}
-                                                min="0"
-                                                onKeyPress={(event) => {
-                                                    if (event.key === '+' || event.key === '-') {
-                                                        event.preventDefault();
-                                                    }
-                                                }}
-                                            />
-                                        </div>
-                                    </>
-                                ))}
+                            {(commandName === '!notifyme' || commandName === '!searchmarket') && (
+                                <>
+                                    <div className="slider-container">
+                                        Pureness:
+                                        <Slider
+                                            marks={purenessMarks}
+                                            value={pureness}
+                                            onChange={handlePurenessChange}
+                                            valueLabelDisplay="auto"
+                                            max={6}
+                                        />
+                                    </div>
+                                </>
+                            )}
+                            {(commandName === '!notifyme' || commandName === '!searchmarket') && (
+                                <>
+                                    <div className="slider-container">
+                                        Speed ⚡:
+                                        <Slider
+                                            marks={speedMarks}
+                                            value={speed}
+                                            onChange={handleSpeedChange}
+                                            valueLabelDisplay="auto"
+                                            min={27}
+                                            max={61}
+                                        />
+                                    </div>
+                                </>
+                            )}
+                            {(commandName === '!notifyme' || commandName === '!searchmarket') && (
+                                <>
+                                    <div className="slider-container">
+                                        Max axie price(ETH):
+                                        <input
+                                            type="number"
+                                            onChange={handleMaxAxiePriceChange}
+                                            value={maxAxiePrice}
+                                            min="0"
+                                            onKeyPress={(event) => {
+                                                if (event.key === '+' || event.key === '-') {
+                                                    event.preventDefault();
+                                                }
+                                            }}
+                                        />
+                                    </div>
+                                </>
+                            )}
                             <div className="slider-container">
                                 Max axie Id:
                                 <input
