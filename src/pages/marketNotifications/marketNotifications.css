@@ -1,0 +1,51 @@
+.market-notifications {
+    margin: 50px;
+}
+
+.market-notifications .pending-notifications-container {
+}
+
+.market-notifications .active-notifications-container {
+    margin-top: 40px;
+}
+
+.market-notifications .active-notifications-container .active-notifications-list {
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.market-notifications .active-notifications-container .active-notifications-list .notification-card-container {
+    margin-right: 32px;
+    margin-bottom: 32px;
+}
+
+.market-notifications .pending-notifications-container .pending-notifications-title {
+    display: flex;
+    justify-content: space-between;
+}
+
+.market-notifications .pending-notifications-container .pending-notifications-list {
+    padding: 16px 32px;
+    height: 100%;
+    background: rgb(201, 201, 201);
+    min-height: 200px;
+    display: flex;
+    overflow-x: scroll;
+    width: 1200px;
+}
+
+.market-notifications .pending-notifications-container .pending-notifications-list .notification-card-container {
+    margin-right: 32px;
+}
+
+.market-notifications .card-content {
+    padding: 0 8px;
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+}
+
+.market-notifications .card-content .card-content-item {
+    width: 50%;
+    margin-bottom: 16px;
+}
