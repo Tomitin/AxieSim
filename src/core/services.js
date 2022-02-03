@@ -1,5 +1,5 @@
-import axios from './axios.instance';
+import { axieApi } from './axios.instance';
 
-export const getAxieDetails = (axieId) => axios.get(`/getaxies/${axieId}`);
+export const getAxieDetails = (axieId) => axieApi.get(`/getaxies/${axieId}`);
 
-export const getNonCachedAxieDetails = (axieId) => axios.get(`/invalidateaxie/${axieId}`);
+export const getNonCachedAxieDetails = (axieId) => axieApi.get(`/invalidateaxie/${axieId}`);

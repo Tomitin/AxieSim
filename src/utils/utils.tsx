@@ -58,6 +58,10 @@ export const nestObject = (items: NestableObject[], rootItemId: string): NestedO
     return recursiveNest(items, rootItemId) as NestedObject;
 };
 
+export const capitalizeString = (str: string) => {
+    return str[0].toUpperCase() + str.slice(1);
+};
+
 /**
  * From a tree with various branches-or subtrees- return a subtree array based on the root axie id
  */

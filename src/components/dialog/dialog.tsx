@@ -7,7 +7,9 @@ interface DialogComponentProps {
     description?: string;
     acceptButtontitle?: string;
     closeButtontitle?: string;
+    fullWidth?: boolean;
     children?: ReactNode;
+    maxWidth?: false | 'md' | 'xs' | 'sm' | 'lg' | 'xl';
     handleClose?: () => void;
     handleAccept?: () => void;
 }
@@ -19,6 +21,8 @@ const DialogComponent: React.FunctionComponent<DialogComponentProps> = (props: D
             onClose={props.handleClose}
             aria-labelledby="alert-dialog-title"
             aria-describedby="alert-dialog-description"
+            fullWidth={!!props.fullWidth}
+            maxWidth={props.maxWidth}
         >
             <DialogTitle id="alert-dialog-title">{props.title}</DialogTitle>
             <DialogContent>

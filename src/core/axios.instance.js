@@ -2,9 +2,17 @@ import axios from 'axios';
 
 const headers = {};
 
-const instance = axios.create({
+export const axieApi = axios.create({
     baseURL: `https://api.axie.technology`,
     headers,
 });
 
-export default instance;
+export const salesInstance = axios.create({
+    baseURL: `http://104.197.95.0:3001`,
+    headers,
+});
+
+export const personalApi = axios.create({
+    baseURL: `http://192.168.0.181:3000`,
+    headers,
+});

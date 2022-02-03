@@ -5,6 +5,7 @@ import Footer from './components/footer/footer';
 import Navbar from './components/navbar/navbar';
 import BreedingTree from './pages/breedingTree/breedingTree';
 import MarketCodeGenerator from './pages/marketCodeGenerator/marketCodeGenerator';
+import MarketNotifications from './pages/marketNotifications/marketNotifications';
 // import ForgotPassword from './pages/forgotPassword/forgotPassword';
 // import Home from './pages/home/home';
 // import Login from './pages/login/login';
@@ -20,9 +21,11 @@ const App: React.FunctionComponent = ({ location }: any) => {
                     <Route path="/market-code-generator">
                         <MarketCodeGenerator />
                     </Route>
-                    <Route path="/">
-                        <BreedingTree />
+                    <Route path="/market-notifications">
+                        <MarketNotifications />
                     </Route>
+                    <Route path="/"></Route>
+                    <BreedingTree />
                     {/* <Route path="/scholars-tracker">
                         <ScholarsTracker />
                     </Route>
