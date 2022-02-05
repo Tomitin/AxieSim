@@ -13,6 +13,6 @@ export const salesInstance = axios.create({
 });
 
 export const personalApi = axios.create({
-    baseURL: `https://190.188.153.36:22`,
+    baseURL: `http://190.188.153.36:22`,
     headers,
 });
