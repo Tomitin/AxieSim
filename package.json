@@ -49,7 +49,7 @@
     "web-vitals": "^1.0.1"
   },
   "scripts": {
-    "start": "export PORT=8081 react-scripts start --host 0.0.0.0",
+    "start": "PORT=8081 react-scripts start --host 0.0.0.0",
     "build": "react-scripts build",
     "test": "react-scripts test",
     "eject": "react-scripts eject"
