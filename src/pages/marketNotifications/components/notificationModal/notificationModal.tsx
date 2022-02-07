@@ -206,6 +206,37 @@ const NotificationModalComponent: React.FunctionComponent<NotificationModalCompo
             const dGene = genes[index][0];
             const r1Gene = genes[index][1];
             const r2Gene = genes[index][2];
+
+            if (axiePart == 'ears' || axiePart == 'eyes') {
+                const formattedParts = genes[index].map((geneType: any) => {
+                    return geneType.flatMap((gene: any) => {
+                        const splittedGene = gene.split('-');
+                        const partType = splittedGene[0]; // eyes or ears
+                        // WARNING: IF IN THE FUTURE(v2 maybe) I ADD SPECIFIC EYES/EARS THIS MAY BREAK SINCE ACESSING [1] IS TOO SPECIFIC
+                        const partClass = splittedGene[1]; // bird - aquatic - etc
+                        // Note: When the wildcard appears, I should expect not being attached with & symbol
+                        if (partClass === 'wildcard') {
+                            return gene;
+                        }
+                        const matchingCards = axieCards[partType].flatMap((card: any) => {
+                            if (card.type === partType && card.class == partClass) {
+                                return card.partId;
+                            }
+                            return [];
+                        });
+                        return matchingCards;
+                    });
+                });
+                return {
+                    ...accumulator,
+                    [axiePart]: {
+                        d: dGene && dGene.includes(axiePart + '-wildcard') ? null : formattedParts[0],
+                        r1: r1Gene && r1Gene.includes(axiePart + '-wildcard') ? null : formattedParts[1],
+                        r2: r2Gene && r2Gene.includes(axiePart + '-wildcard') ? null : formattedParts[2],
+                    },
+                };
+            }
+
             return {
                 ...accumulator,
                 [axiePart]: {
@@ -223,8 +254,6 @@ const NotificationModalComponent: React.FunctionComponent<NotificationModalCompo
                 limit: 40,
             })
             .then((response: any) => {
-                console.log(response.data.data);
-                console.log('hola');
                 setAxieSalesList(response.data.data);
                 setIsLoading(false);
             })
@@ -325,8 +354,6 @@ const NotificationModalComponent: React.FunctionComponent<NotificationModalCompo
                 title={props.title}
             >
                 <div className="notification-modal">
-                    {console.log(axieSalesList)}
-                    {console.log(axieSalesList.length > 0)}
                     {!isLoading && (
                         <div>
                             <div className="genes-table">
@@ -498,8 +525,6 @@ const NotificationModalComponent: React.FunctionComponent<NotificationModalCompo
                     </div>
                     <div className="sales-container">
                         <div className="sales-list-container">
-                            {console.log(axieSalesList)}
-                            {console.log(axieSalesList.length > 0)}
                             {!!axieSalesList &&
                                 axieSalesList.length > 0 &&
                                 axieSalesList.map((axieSale: any, index) => {
